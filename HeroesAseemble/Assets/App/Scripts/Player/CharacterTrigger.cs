@@ -6,27 +6,27 @@ namespace HeroesAssemble
 {
     public class CharacterTrigger : MonoBehaviour
     {
-        private CharacterInfor characterInfor;
+        private CharacterController characterController;
         private FriendlyAgent friendlyAgent;
 
         private void Awake()
         {
-            characterInfor = GetComponent<CharacterInfor>();
+            characterController = GetComponent<CharacterController>();
             friendlyAgent = GetComponent<FriendlyAgent>();
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == "Goblin" && characterInfor.attack == false && GetComponent<FriendlyAgent>().target != null && other.GetComponent<Agent>().targetCount <= 2)
+            if (other.tag == "Goblin" && characterController.attack == false && GetComponent<FriendlyAgent>().Target != null && other.GetComponent<Agent>().targetCount <= 2)
             {
-                characterInfor.attack = true;
+                characterController.attack = true;
 
-                if (friendlyAgent.target.tag == "FollowCube")
+                if (friendlyAgent.Target.tag == "FollowCube")
                 {
-                    friendlyAgent.target.GetComponent<State>().isFill = false;
+                    friendlyAgent.Target.GetComponent<State>().isFill = false;
                 }
 
-                friendlyAgent.target = other.gameObject;
+                friendlyAgent.Target = other.gameObject;
                 other.GetComponent<Agent>().target = gameObject;
                 other.GetComponent<Agent>().targetCount++;
             }

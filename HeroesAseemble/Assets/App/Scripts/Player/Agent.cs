@@ -68,7 +68,6 @@ namespace HeroesAssemble
                 if (GameManager.Instance.maxBlueGoblin > GameManager.Instance.getBlueGoblin)
                 {
                     GameManager.Instance.getBlueGoblin++;
-
                 }
                 else
                 {
@@ -127,9 +126,10 @@ namespace HeroesAssemble
                         }
                     }
                 }
+
                 if (target.tag == "Pokemon" || !target.activeSelf)
                 {
-                    if (target.GetComponent<CharacterInfor>().dead == true)
+                    if (target.GetComponent<CharacterController>().dead == true)
                     {
                         if (!isdead)
                         {

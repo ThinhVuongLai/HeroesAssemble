@@ -9,6 +9,16 @@ namespace HeroesAssemble
         public bool isClicking;
         public GameObject playerDeath;
 
+        public override void Awake()
+        {
+            base.Awake();
+
+            if(playerDeath)
+            {
+                playerDeath.SetActive(false);
+            }
+        }
+
         public void SideMovement()
         {
             if (Input.GetMouseButton(0))
@@ -39,6 +49,16 @@ namespace HeroesAssemble
             if (GameManager.Instance.startGame)
             {
                 SideMovement();
+            }
+
+            if(Input.GetKeyDown(KeyCode.M))
+            {
+                AssemblyController.Instance.AddCharacterIntoAssemply(0);
+                AssemblyController.Instance.AddCharacterIntoAssemply(1);
+                AssemblyController.Instance.AddCharacterIntoAssemply(2);
+                AssemblyController.Instance.AddCharacterIntoAssemply(3);
+
+                AssemblyController.Instance.UpdateAssemply();
             }
         }
     }
