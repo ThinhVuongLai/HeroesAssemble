@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace HeroesAssemble
 {
-    public class CharacterInfor : MonoBehaviour
+    public class CharacterController : MonoBehaviour
     {
         [Header("Info Settings")]
         public string Name;
@@ -13,6 +13,7 @@ namespace HeroesAssemble
         public int level;
         public int maxLevel;
         public GameObject evelotionParent;
+
         [Header("Live Settings")]
         public int health = 0;
         public int exp = 0;
@@ -20,9 +21,10 @@ namespace HeroesAssemble
         public bool dead;
         public bool target;
         public bool attack;
+
         [Header("Another Settings")]
-        public GameObject evelotionParticle;
-        public GameObject evelotionStartParticle;
+        [SerializeField] private ParticleSystem evelotionParticle;
+        [SerializeField] private ParticleSystem evelotionStartParticle;
 
         private bool stopExp;
 
@@ -33,10 +35,12 @@ namespace HeroesAssemble
 
         private void Awake()
         {
-            characterInfor = GetComponent<CharacterInfor>();
             friendlyAgent = GetComponent<FriendlyAgent>();
             characterAnimator = GetComponent<Animator>();
             characterTrigger = GetComponent<CharacterTrigger>();
+
+            SetShowEvolutionParticle(false);
+            SetShowEvolutionStartParticle(false);
         }
 
         private void LevelUp()
@@ -55,10 +59,9 @@ namespace HeroesAssemble
 
                 if (level < maxLevel)
                 {
-                    characterInfor.level++;
-                    if (friendlyAgent.target.tag == "FollowCube")
+                    if (friendlyAgent.Target.tag == "FollowCube")
                     {
-                        friendlyAgent.target.GetComponent<State>().isFill = false;
+                        friendlyAgent.Target.GetComponent<State>().isFill = false;
                     }
 
                     GetComponent<DemoEnemy>().hideHealtbar();
@@ -66,7 +69,7 @@ namespace HeroesAssemble
 
                     characterTrigger.enabled = false;
 
-                    friendlyAgent.startGame = false;
+                    friendlyAgent.IsStartGame = false;
 
                     characterAnimator.SetBool("Attack", false);
                     characterAnimator.SetBool("Run", false);
@@ -74,18 +77,18 @@ namespace HeroesAssemble
 
                     if (evelotionStartParticle != null)
                     {
-                        evelotionStartParticle.GetComponent<ParticleSystem>().Play();
+                        evelotionStartParticle.Play();
                     }
                     else
                     {
                         Debug.LogWarning(name + ": isimli pokemonda evolotion particle yok");
                     }
 
-                    if (friendlyAgent.target != null)
+                    if (friendlyAgent.Target != null)
                     {
-                        if (friendlyAgent.target.GetComponent<Agent>().target.tag == "Pokemon")
+                        if (friendlyAgent.Target.GetComponent<Agent>().target.tag == "Pokemon")
                         {
-                            friendlyAgent.target.GetComponent<Agent>().target = null;
+                            friendlyAgent.Target.GetComponent<Agent>().target = null;
                         }
                     }
 
@@ -93,6 +96,40 @@ namespace HeroesAssemble
 
                     Invoke("LevelUp", 1f);
                     stopExp = true;
+                }
+            }
+        }
+
+        public void SetShowEvolutionParticle(bool show)
+        {
+            if (evelotionParticle != null)
+            {
+                evelotionParticle.gameObject.SetActive(show);
+
+                if (show)
+                {
+                    evelotionParticle.Play();
+                }
+                else
+                {
+                    evelotionParticle.Stop();
+                }
+            }
+        }
+
+        public void SetShowEvolutionStartParticle(bool show)
+        {
+            if (evelotionStartParticle != null)
+            {
+                evelotionStartParticle.gameObject.SetActive(show);
+
+                if (show)
+                {
+                    evelotionStartParticle.Play();
+                }
+                else
+                {
+                    evelotionStartParticle.Stop();
                 }
             }
         }

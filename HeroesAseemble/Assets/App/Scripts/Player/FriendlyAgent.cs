@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,16 +8,40 @@ namespace HeroesAssemble
 {
     public class FriendlyAgent : MonoBehaviour
     {
-        public GameObject target;
-        public bool startGame;
+        [SerializeField] private GameObject target;
+        [SerializeField] private bool startGame;
 
-        private CharacterInfor characterInfor;
+        private CharacterController characterController;
         private Animator characterAnimator;
         private NavMeshAgent navMeshAgent;
 
+        public GameObject Target
+        {
+            get
+            {
+                return target;
+            }
+            set
+            {
+                target = value;
+            }
+        }
+
+        public bool IsStartGame
+        {
+            get
+            {
+                return startGame;
+            }
+            set
+            {
+                startGame = value;
+            }
+        }
+
         private void Awake()
         {
-            characterInfor = GetComponent<CharacterInfor>();
+            characterController = GetComponent<CharacterController>();
             characterAnimator = GetComponent<Animator>();
             navMeshAgent = GetComponent<NavMeshAgent>();
         }
@@ -24,7 +49,7 @@ namespace HeroesAssemble
         private void Start()
         {
             CheckPosition();
-            characterInfor.evelotionParticle.GetComponent<ParticleSystem>().Play();
+            //characterController.SetShowEvolutionParticle(true);
 
             Invoke("GoGame", 1.1f);
         }
@@ -51,7 +76,7 @@ namespace HeroesAssemble
         public void DamageCheck()
         {
             Debug.Log("Event attack check edildi pokemon");
-            if (target != null && transform.tag == "Pokemon" && !characterInfor.dead)
+            if (target != null && transform.tag == "Pokemon" && !characterController.dead)
             {
 
                 if (target.tag == "Goblin" && !target.GetComponent<Agent>().isdead)
@@ -66,38 +91,38 @@ namespace HeroesAssemble
                 if (!bDistance && target.CompareTag("Goblin") && !target.GetComponent<Agent>().isdead)
                 {
                     Debug.Log("goblin cani indirioz");
-                    target.GetComponent<DemoEnemy>().currentHp -= (characterInfor.power * GetComponent<CharacterInfor>().level);
+                    target.GetComponent<DemoEnemy>().currentHp -= (characterController.power * characterController.level);
                     if (target.GetComponent<DemoEnemy>().currentHp <= 0 && !target.GetComponent<Agent>().isdead)
                     {
                         target.GetComponent<DemoEnemy>().currentHp = 0;
                         target.GetComponent<DemoEnemy>().hideHealtbar();
                         if (!target.GetComponent<Agent>().isdead)
                         {
-                            characterInfor.LevelCheck(target.GetComponent<Agent>().exp);
+                            characterController.LevelCheck(target.GetComponent<Agent>().exp);
                             GameManager.Instance.deadGoblinCounter++;
                         }
-                        characterInfor.attack = false;
+                        characterController.attack = false;
                         target.GetComponent<Agent>().Dead();
                     }
                     else if (target.GetComponent<DemoEnemy>().currentHp <= 0 && target.GetComponent<Agent>().isdead)
                     {
-                        characterInfor.attack = false;
+                        characterController.attack = false;
                         CheckPosition();
                     }
                 }
 
             }
 
-            if (characterInfor.dead)
+            if (characterController.dead)
             {
-                characterInfor.attack = false;
+                characterController.attack = false;
             }
 
             if (target != null && transform.tag == "Pokemon" && target.tag == "Goblin")
             {
                 if (target.GetComponent<Agent>().isdead)
                 {
-                    characterInfor.attack = false;
+                    characterController.attack = false;
                     CheckPosition();
                 }
             }
@@ -111,7 +136,7 @@ namespace HeroesAssemble
                 target.GetComponent<State>().isFill = false;
             }
             GetComponent<DemoEnemy>().hideHealtbar();
-            characterInfor.dead = true;
+            characterController.dead = true;
             Invoke("InActiveObj", 1f);
             GameManager.Instance.getPokemon--;
 
@@ -130,7 +155,7 @@ namespace HeroesAssemble
                 navMeshAgent.SetDestination(target.transform.position);
 
                 bool bDistance = navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance + 1;
-                if (!bDistance && !characterInfor.attack)
+                if (!bDistance && !characterController.attack)
                 {
                     navMeshAgent.isStopped = true;
 
@@ -138,7 +163,7 @@ namespace HeroesAssemble
                     characterAnimator.SetBool("Idle", true);
 
                 }
-                else if (bDistance && !characterInfor.attack)
+                else if (bDistance && !characterController.attack)
                 {
                     navMeshAgent.isStopped = false;
 
@@ -147,7 +172,7 @@ namespace HeroesAssemble
                     characterAnimator.SetBool("Idle", false);
                 }
 
-                if (!bDistance && characterInfor.attack)
+                if (!bDistance && characterController.attack)
                 {
                     navMeshAgent.isStopped = true;
 
@@ -156,7 +181,7 @@ namespace HeroesAssemble
                     characterAnimator.SetBool("Attack", true);
                 }
 
-                if (bDistance && characterInfor.attack)
+                if (bDistance && characterController.attack)
                 {
                     navMeshAgent.isStopped = false;
 

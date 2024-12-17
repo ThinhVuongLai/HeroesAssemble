@@ -43,11 +43,6 @@ namespace HeroesAssemble
                 Destroy(gameObject);
             }
         }
-
-        private void OnDisable()
-        {
-
-        }
         #endregion
 
     }
