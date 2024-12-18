@@ -1,6 +1,5 @@
 using UnityEngine;
 using SolClovser.EasyMultipleHealthbar;
-using HeroesAssemble;
 
 public class DemoEnemy : MonoBehaviour
 {
@@ -12,20 +11,20 @@ public class DemoEnemy : MonoBehaviour
     int firstStart = 0;
 
     private HealthbarController _healthbar;
-    private CharacterInfor characterInfor;
+    private HeroesAssemble.CharacterController characterController;
 
     private void Awake()
     {
-        characterInfor = GetComponent<CharacterInfor>();
+        characterController = GetComponent<HeroesAssemble.CharacterController>();
     }
 
     public void Start()
     {
         if (transform.tag == "Pokemon")
         {
-            maxHp = characterInfor.health;
+            maxHp = characterController.health;
 
-            currentHp = characterInfor.health;
+            currentHp = characterController.health;
         }
 
         RequestAHealthbar();

@@ -15,9 +15,9 @@ public class VariableJoystick : Joystick
 
     public void SetMode(JoystickType joystickType)
     {
-      
+
         this.joystickType = joystickType;
-        if(joystickType == JoystickType.Fixed)
+        if (joystickType == JoystickType.Fixed)
         {
             background.anchoredPosition = fixedPosition;
             background.gameObject.SetActive(true);
@@ -36,26 +36,28 @@ public class VariableJoystick : Joystick
     public override void OnPointerDown(PointerEventData eventData)
     {
         Debug.Log("girdi pointer down");
-       
+
+        joystickType = JoystickType.Fixed;
+
         if (joystickType == JoystickType.Fixed)
-            {
-                background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
-                background.gameObject.SetActive(true);
+        {
+            background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
+            background.gameObject.SetActive(true);
             if (!GameManager.Instance.startGame)
             {
                 GameManager.Instance.GoGame();
                 GameManager.Instance.startGame = true;
-                joystickType = JoystickType.Floating;
             }
-            }
-            base.OnPointerDown(eventData);
-        
-      
+        }
+
+        base.OnPointerDown(eventData);
     }
 
     public override void OnPointerUp(PointerEventData eventData)
     {
-        if(joystickType != JoystickType.Fixed)
+        joystickType = JoystickType.Floating;
+
+        if (joystickType != JoystickType.Fixed)
             background.gameObject.SetActive(false);
 
         base.OnPointerUp(eventData);
@@ -63,14 +65,14 @@ public class VariableJoystick : Joystick
 
     protected override void HandleInput(float magnitude, Vector2 normalised, Vector2 radius, Camera cam)
     {
-        
+
         if (joystickType == JoystickType.Dynamic && magnitude > moveThreshold)
         {
             Vector2 difference = normalised * (magnitude - moveThreshold) * radius;
             background.anchoredPosition += difference;
         }
         base.HandleInput(magnitude, normalised, radius, cam);
-        
+
     }
 }
 
