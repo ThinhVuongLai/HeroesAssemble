@@ -1631,6 +1631,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isClicking: 0
   playerDeath: {fileID: 0}
+  updateAssemplyChannel: {fileID: 11400000, guid: e6f9f688ad5e14fc7b51becf36d2ae0c, type: 2}
+  addCharacterChannel: {fileID: 11400000, guid: 81c57ac1a07b04edc96747e69ef75764, type: 2}
+  removeCharacterChannel: {fileID: 11400000, guid: 43d77a15c5d9e4752a22090f37bb6fbf, type: 2}
 --- !u!1 &1833141175
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,7 +1908,7 @@ GameObject:
   - component: {fileID: 2022285715}
   - component: {fileID: 2022285716}
   m_Layer: 0
-  m_Name: CharacterContainer
+  m_Name: AssemblyController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1933,13 +1936,16 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2022285714}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b6b60ac0d17244a881710151522bc79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   characterIds: 
   getCharacterInforChannel: {fileID: 11400000, guid: a49208ef7e4e446c1828e92bc50c213d, type: 2}
+  updateAssemplyChannel: {fileID: 11400000, guid: e6f9f688ad5e14fc7b51becf36d2ae0c, type: 2}
+  addCharacterChannel: {fileID: 11400000, guid: 81c57ac1a07b04edc96747e69ef75764, type: 2}
+  removeCharacterChannel: {fileID: 11400000, guid: 43d77a15c5d9e4752a22090f37bb6fbf, type: 2}
 --- !u!1 &2045732068
 GameObject:
   m_ObjectHideFlags: 0

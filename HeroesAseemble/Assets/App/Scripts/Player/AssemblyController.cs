@@ -4,14 +4,31 @@ using UnityEngine;
 
 namespace HeroesAssemble
 {
-    public class AssemblyController : SceneDependentSingleton<AssemblyController>
+    public class AssemblyController : MonoBehaviour
     {
         [SerializeField] private List<int> characterIds = new List<int>();
 
         [Header("Channel")]
         [SerializeField] private GetCharacterInforChannel getCharacterInforChannel;
+        [SerializeField] private VoidChannel updateAssemplyChannel;
+        [SerializeField] private IntegerChannel addCharacterChannel;
+        [SerializeField] private IntegerChannel removeCharacterChannel;
 
-        public void AddCharacterIntoAssemply(int characterId)
+        private void OnEnable()
+        {
+            updateAssemplyChannel.AddListener(UpdateAssemply);
+            addCharacterChannel.AddListener(AddCharacterIntoAssemply);
+            removeCharacterChannel.AddListener(RemoveCharacterFromAssemply);
+        }
+
+        private void OnDisable()
+        {
+            updateAssemplyChannel.RemoveListener(UpdateAssemply);
+            addCharacterChannel.RemoveListener(AddCharacterIntoAssemply);
+            removeCharacterChannel.RemoveListener(RemoveCharacterFromAssemply);
+        }
+
+        private void AddCharacterIntoAssemply(int characterId)
         {
             if (!characterIds.Contains(characterId))
             {
@@ -19,7 +36,7 @@ namespace HeroesAssemble
             }
         }
 
-        public void RemoveCharacterFromAssemply(int characterId)
+        private void RemoveCharacterFromAssemply(int characterId)
         {
             if (characterIds.Contains(characterId))
             {
@@ -27,7 +44,7 @@ namespace HeroesAssemble
             }
         }
 
-        public void UpdateAssemply()
+        private void UpdateAssemply()
         {
             CharacterInfor characterInfor = null;
             GameObject currentPrefab = null;
