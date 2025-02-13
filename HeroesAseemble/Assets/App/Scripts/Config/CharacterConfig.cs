@@ -31,5 +31,7 @@ namespace HeroesAssemble
     {
         public int characterId;
         public GameObject characterPrefab;
+        public string idleAnimationName = string.Empty;
+        public string walkAnimationName = string.Empty;
     }
 }

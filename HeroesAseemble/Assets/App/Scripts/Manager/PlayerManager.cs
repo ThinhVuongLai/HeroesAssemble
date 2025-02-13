@@ -58,10 +58,12 @@ namespace HeroesAssemble
 
             if(Input.GetKeyDown(KeyCode.M))
             {
-                addCharacterChannel.RunIntegerChannel(0);
-                addCharacterChannel.RunIntegerChannel(1);
-                addCharacterChannel.RunIntegerChannel(2);
-                addCharacterChannel.RunIntegerChannel(3);
+                //addCharacterChannel.RunIntegerChannel(0);
+                //addCharacterChannel.RunIntegerChannel(1);
+                //addCharacterChannel.RunIntegerChannel(2);
+                //addCharacterChannel.RunIntegerChannel(3);
+                addCharacterChannel.RunIntegerChannel(4);
+                addCharacterChannel.RunIntegerChannel(5);
 
                 updateAssemplyChannel.RunVoidChannel();
             }

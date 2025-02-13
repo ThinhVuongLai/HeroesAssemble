@@ -45,26 +45,41 @@ public class DemoEnemy : MonoBehaviour
 
     public void openHealtbar()
     {
-        _healthbar.healthBarSliderRectTransform.localScale = Vector3.one;
+        if (_healthbar)
+        {
+            _healthbar.healthBarSliderRectTransform.localScale = Vector3.one;
+        }
     }
 
     public void hideHealtbar()
     {
-        _healthbar.healthBarSliderRectTransform.localScale = Vector3.zero;
+        if (_healthbar)
+        {
+            _healthbar.healthBarSliderRectTransform.localScale = Vector3.zero;
+        }
     }
 
     // How to request a healthbar
     private void RequestAHealthbar()
     {
         // Request a healthbar object from manager
-        _healthbar = EasyMultipleHealthbar.Instance.RequestHealthbar(friend);
+        if (EasyMultipleHealthbar.Instance != null)
+        {
+            _healthbar = EasyMultipleHealthbar.Instance.RequestHealthbar(friend);
+        }
 
         // Then setup hp values, which transform health bar should follow, and with how much offset
-        _healthbar.SetupUI(maxHp, currentHp, transform, positionOffset);
+        if (_healthbar != null)
+        {
+            _healthbar.SetupUI(maxHp, currentHp, transform, positionOffset);
+        }
 
         // Set the sorting layer to something higher if you want this healthbar to stay on top of other healthbars
         // You might need to increase the layer count in Easy Multiple Healthbar object.
-        _healthbar.SetSortingLayer(sortingLayer);
+        if (_healthbar != null)
+        {
+            _healthbar.SetSortingLayer(sortingLayer);
+        }
 
         // You can use this if two healthbars are in same layer and they are overlapping.
         // _healthbar.MoveToBottomInLayerHierarchy();
@@ -73,6 +88,9 @@ public class DemoEnemy : MonoBehaviour
     // How to update the healthbar
     private void UpdateHealthbar(float currentValue)
     {
-        _healthbar.UpdateUI(currentValue);
+        if (_healthbar != null)
+        {
+            _healthbar.UpdateUI(currentValue);
+        }
     }
 }

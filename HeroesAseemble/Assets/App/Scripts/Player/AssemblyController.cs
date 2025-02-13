@@ -64,19 +64,17 @@ namespace HeroesAssemble
 
                 if(currentPrefab!=null)
                 {
-                    currentCharacterObject = Instantiate(currentPrefab, transform.position, Quaternion.identity);
-
                     if (CharacterList.Instance.pokemonListArray[i].GetComponent<State>().isFill == false)
                     {
                         spawnTransform = CharacterList.Instance.pokemonListArray[i].transform;
                     }
 
-                    if(spawnTransform==null)
+                    if (spawnTransform == null)
                     {
                         spawnTransform = transform;
                     }
 
-                    currentCharacterObject.transform.position = spawnTransform.position;
+                    currentCharacterObject = Instantiate(currentPrefab, spawnTransform.position, Quaternion.identity);
                 }
             }
         }
