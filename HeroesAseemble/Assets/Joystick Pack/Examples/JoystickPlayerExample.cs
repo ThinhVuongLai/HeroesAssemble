@@ -13,6 +13,7 @@ public class JoystickPlayerExample : SceneDependentSingleton<JoystickPlayerExamp
     {
         
     }
+
     public void FixedUpdate()
     {
         if (PlayerManager.Instance.isClicking)

@@ -10,6 +10,7 @@ namespace HeroesAssemble
     {
         [SerializeField] private GameObject target;
         [SerializeField] private bool startGame;
+        [SerializeField] private float beginMoveDistance = 0.5f;
 
         private CharacterController characterController;
         private Animator characterAnimator;
@@ -87,7 +88,7 @@ namespace HeroesAssemble
                     }
                 }
 
-                bool bDistance = navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance + 1f;
+                bool bDistance = navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance + beginMoveDistance;
                 if (!bDistance && target.CompareTag("Goblin") && !target.GetComponent<Agent>().isdead)
                 {
                     Debug.Log("goblin cani indirioz");

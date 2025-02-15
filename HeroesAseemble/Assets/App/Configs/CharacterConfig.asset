@@ -15,9 +15,25 @@ MonoBehaviour:
   characterInfors:
   - characterId: 0
     characterPrefab: {fileID: 3319832262097768165, guid: 97e4b6a85da7e495290cbfff4bb006aa, type: 3}
+    idleAnimationName: 
+    walkAnimationName: 
   - characterId: 1
     characterPrefab: {fileID: 8689480311849083149, guid: 3cbeeb5b11ab94e37a7c93f7644ee21c, type: 3}
+    idleAnimationName: 
+    walkAnimationName: 
   - characterId: 2
     characterPrefab: {fileID: 2519676120326203508, guid: 8aad86607e3ad49a99d47eda0f4a1df4, type: 3}
+    idleAnimationName: 
+    walkAnimationName: 
   - characterId: 3
     characterPrefab: {fileID: 5520583845748892553, guid: e20ed991fd6b84df99a2bc42d9f3ecf4, type: 3}
+    idleAnimationName: 
+    walkAnimationName: 
+  - characterId: 4
+    characterPrefab: {fileID: 2373476749425544925, guid: 908e0d26f06bc450ea7063b3c31931a6, type: 3}
+    idleAnimationName: 
+    walkAnimationName: 
+  - characterId: 5
+    characterPrefab: {fileID: 2045322929215248779, guid: 49b9999d8d8194c58b67b9c60b92b850, type: 3}
+    idleAnimationName: 
+    walkAnimationName: 
