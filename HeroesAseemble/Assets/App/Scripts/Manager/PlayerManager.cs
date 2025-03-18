@@ -55,6 +55,9 @@ namespace HeroesAssemble
             {
                 EventController.Instance.AddCharacterChannel.RunIntegerChannel(4);
                 EventController.Instance.AddCharacterChannel.RunIntegerChannel(5);
+                EventController.Instance.AddCharacterChannel.RunIntegerChannel(4);
+                EventController.Instance.AddCharacterChannel.RunIntegerChannel(5);
+                EventController.Instance.AddCharacterChannel.RunIntegerChannel(4);
 
                 EventController.Instance.UpdateAssemplyChannel.RunVoidChannel();
             }

@@ -17,13 +17,7 @@ namespace HeroesAssemble
         }
 
         private void OnTriggerEnter(Collider other)
-        {
-            if(transform.name.Equals("Mage(Clone)"))
-            {
-                Debug.LogError("1111111111111111");
-            }
-
-            
+        {            
             if(characterController == null)
             {
                 return;

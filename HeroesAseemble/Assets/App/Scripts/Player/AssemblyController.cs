@@ -6,7 +6,16 @@ namespace HeroesAssemble
 {
     public class AssemblyController : MonoBehaviour
     {
+        private const int characterMax = 6;
         [SerializeField] private List<int> characterIds = new List<int>();
+
+        private void Awake()
+        {
+            for(int i = 0;i < characterMax; i++)
+            {
+                characterIds.Add(-1);
+            }
+        }
 
         private void OnEnable()
         {
@@ -29,17 +38,27 @@ namespace HeroesAssemble
 
         private void AddCharacterIntoAssemply(int characterId)
         {
-            if (!characterIds.Contains(characterId))
+            int changeIndex = -1;
+            for(int i = 0; i < characterMax; i++)
             {
-                characterIds.Add(characterId);
+                if(characterIds[i]<0)
+                {
+                    changeIndex = i;
+                    break;
+                }
+            }
+
+            if(changeIndex >= 0)
+            {
+                characterIds[changeIndex] = characterId;
             }
         }
 
-        private void RemoveCharacterFromAssemply(int characterId)
+        private void RemoveCharacterFromAssemply(int characterIndex)
         {
-            if (characterIds.Contains(characterId))
+            if(characterIndex >= 0 && characterIndex < characterIds.Count)
             {
-                characterIds.Remove(characterId);
+                characterIds[characterIndex] = -1;
             }
         }
 
@@ -55,6 +74,12 @@ namespace HeroesAssemble
             for (int i = 0, max = characterIds.Count; i < max; i++)
             {
                 currentCharacterId = characterIds[i];
+
+                if(currentCharacterId < 0)
+                {
+                    continue;
+                }
+
                 characterInfor = EventController.Instance.GetCharacterInforChannel.RunChannel(currentCharacterId);
 
                 if (characterInfor != null)
