@@ -8,16 +8,10 @@ namespace HeroesAssemble
     {
         [Header("Character Config")]
         [SerializeField] private CharacterConfig characterConfig;
-        [SerializeField] private GetCharacterInforChannel getCharacterInforChannel;
 
-        private void OnEnable()
+        private void Awake()
         {
-            getCharacterInforChannel.AddListener(GetCharacterInfor);
-        }
-
-        private void OnDisable()
-        {
-            getCharacterInforChannel.RemoveListener(GetCharacterInfor);
+            EventController.Instance.GetCharacterInforChannel.AddListener(GetCharacterInfor);
         }
 
         private CharacterInfor GetCharacterInfor(int characterId)

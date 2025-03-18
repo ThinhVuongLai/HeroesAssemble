@@ -28,6 +28,21 @@ namespace HeroesAssemble
         public int deadGoblinCounter;
         public int catchPokemonCounter;
 
+        private bool isPauseGame;
+
+        public bool IsPauseGame
+        {
+            get
+            {
+                return isPauseGame;
+            }
+            set
+            {
+                isPauseGame = value;
+                EventController.Instance.PauseGameChannel.RunVoidChannel();
+            }
+        }
+
         void Start()
         {
             //  EndGame();

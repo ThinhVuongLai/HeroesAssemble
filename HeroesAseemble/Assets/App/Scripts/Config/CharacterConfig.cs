@@ -31,7 +31,10 @@ namespace HeroesAssemble
     {
         public int characterId;
         public GameObject characterPrefab;
+        public int heath;
         public string idleAnimationName = string.Empty;
         public string walkAnimationName = string.Empty;
+        public string normalAttackAnimationName = string.Empty;
+        public float beginAttackDistance = 0.5f;
     }
 }

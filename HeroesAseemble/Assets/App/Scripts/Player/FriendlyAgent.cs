@@ -9,12 +9,10 @@ namespace HeroesAssemble
     public class FriendlyAgent : MonoBehaviour
     {
         [SerializeField] private GameObject target;
-        [SerializeField] private bool startGame;
-        [SerializeField] private float beginMoveDistance = 0.5f;
-
         private CharacterController characterController;
-        private Animator characterAnimator;
         private NavMeshAgent navMeshAgent;
+        private bool hasTargetEnemy;
+        private GameObject targetToMove;
 
         public GameObject Target
         {
@@ -28,170 +26,110 @@ namespace HeroesAssemble
             }
         }
 
-        public bool IsStartGame
-        {
-            get
-            {
-                return startGame;
-            }
-            set
-            {
-                startGame = value;
-            }
-        }
-
         private void Awake()
         {
             characterController = GetComponent<CharacterController>();
-            characterAnimator = GetComponent<Animator>();
             navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
-        private void Start()
+        public void SetTargetToMove(GameObject targetObject)
         {
-            CheckPosition();
-            //characterController.SetShowEvolutionParticle(true);
-
-            Invoke("GoGame", 1.1f);
+            targetToMove=targetObject;
         }
 
-        private void GoGame()
+        public bool IsEnoughDisTanceToTarget()
         {
-            startGame = true;
-        }
-
-        public void CheckPosition()
-        {
-            for (int i = 0; i < CharacterList.Instance.pokemonListArray.Count; i++)
+            if(target==null)
             {
-                if (CharacterList.Instance.pokemonListArray[i].GetComponent<State>().isFill == false)
-                {
-                    CharacterList.Instance.pokemonListArray[i].GetComponent<State>().isFill = true;
-                    target = CharacterList.Instance.pokemonListArray[i];
+                return false;
+            }
 
-                    break;
-                }
+            float distance = GetDistanceToTarget();
+
+            return distance <= navMeshAgent.stoppingDistance + 0.5f;
+        }
+
+        public bool IsEnoughDistanceToAttack()
+        {
+            float distanceToTarget = GetDistanceToTarget();
+
+            return distanceToTarget <= characterController.CurrentCharacterInfor.beginAttackDistance;
+        }
+
+        public bool IsTooNearTarget()
+        {
+            float distanceToTarget = GetDistanceToTarget();
+
+            return distanceToTarget < characterController.CurrentCharacterInfor.beginAttackDistance;
+        }
+
+        public void MoveWhenTooNearTarget()
+        {
+            Vector3 characterPosition = transform.position;
+            Vector3 targetPosition = target.transform.position;
+
+            Vector3 direction = GetDirection(characterPosition, targetPosition);
+            
+            Vector3 targetMovePosition=target.transform.position + (direction*(characterController.CurrentCharacterInfor.beginAttackDistance - 0.1f));
+
+            navMeshAgent.SetDestination(targetMovePosition);
+        }
+
+        public Vector3 GetDirection(Vector3 from, Vector3 to)
+        {
+            return (to - from).normalized;
+        }
+
+        public float GetDistanceToTarget()
+        {
+            if(target)
+            {
+                return Vector3.Distance(transform.position, target.transform.position);
+            }
+            else
+            {
+                return int.MaxValue;
             }
         }
 
-        public void DamageCheck()
+        public bool HasTarget()
         {
-            Debug.Log("Event attack check edildi pokemon");
-            if (target != null && transform.tag == "Pokemon" && !characterController.dead)
-            {
-
-                if (target.tag == "Goblin" && !target.GetComponent<Agent>().isdead)
-                {
-                    if (target.GetComponent<Agent>().target.tag != "Pokemon")
-                    {
-                        target.GetComponent<Agent>().target = gameObject;
-                    }
-                }
-
-                bool bDistance = navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance + beginMoveDistance;
-                if (!bDistance && target.CompareTag("Goblin") && !target.GetComponent<Agent>().isdead)
-                {
-                    Debug.Log("goblin cani indirioz");
-                    target.GetComponent<DemoEnemy>().currentHp -= (characterController.power * characterController.level);
-                    if (target.GetComponent<DemoEnemy>().currentHp <= 0 && !target.GetComponent<Agent>().isdead)
-                    {
-                        target.GetComponent<DemoEnemy>().currentHp = 0;
-                        target.GetComponent<DemoEnemy>().hideHealtbar();
-                        if (!target.GetComponent<Agent>().isdead)
-                        {
-                            characterController.LevelCheck(target.GetComponent<Agent>().exp);
-                            GameManager.Instance.deadGoblinCounter++;
-                        }
-                        characterController.attack = false;
-                        target.GetComponent<Agent>().Dead();
-                    }
-                    else if (target.GetComponent<DemoEnemy>().currentHp <= 0 && target.GetComponent<Agent>().isdead)
-                    {
-                        characterController.attack = false;
-                        CheckPosition();
-                    }
-                }
-
-            }
-
-            if (characterController.dead)
-            {
-                characterController.attack = false;
-            }
-
-            if (target != null && transform.tag == "Pokemon" && target.tag == "Goblin")
-            {
-                if (target.GetComponent<Agent>().isdead)
-                {
-                    characterController.attack = false;
-                    CheckPosition();
-                }
-            }
+            return target != null;
         }
 
-        public void Dead()
+        public void RunToTarget()
         {
-            characterAnimator.SetBool("Dead", true);
-            if (target.tag != "Goblin")
-            {
-                target.GetComponent<State>().isFill = false;
-            }
-            GetComponent<DemoEnemy>().hideHealtbar();
-            characterController.dead = true;
-            Invoke("InActiveObj", 1f);
-            GameManager.Instance.getPokemon--;
-
-        }
-
-        private void InActiveObj()
-        {
-            gameObject.SetActive(false);
-        }
-
-        private void Update()
-        {
-
-            if (target != null && startGame)
+            if(target)
             {
                 navMeshAgent.SetDestination(target.transform.position);
+            }   
+        }
 
-                bool bDistance = navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance + 1;
-                if (!bDistance && !characterController.attack)
-                {
-                    navMeshAgent.isStopped = true;
+        public void StopNavMeshAgent()
+        {
+            navMeshAgent.isStopped = true;
+        }
 
-                    characterAnimator.SetBool("Run", false);
-                    characterAnimator.SetBool("Idle", true);
+        public void ContinueNavMeshAgent()
+        {
+            navMeshAgent.isStopped = false;
+        }
 
-                }
-                else if (bDistance && !characterController.attack)
-                {
-                    navMeshAgent.isStopped = false;
+        public void SetTargetToTargetMove()
+        {
+            target = targetToMove;
+        }
 
-                    characterAnimator.SetBool("Run", true);
-                    characterAnimator.SetBool("Attack", false);
-                    characterAnimator.SetBool("Idle", false);
-                }
-
-                if (!bDistance && characterController.attack)
-                {
-                    navMeshAgent.isStopped = true;
-
-                    characterAnimator.SetBool("Run", false);
-                    characterAnimator.SetBool("Idle", true);
-                    characterAnimator.SetBool("Attack", true);
-                }
-
-                if (bDistance && characterController.attack)
-                {
-                    navMeshAgent.isStopped = false;
-
-                    characterAnimator.SetBool("Run", true);
-                    characterAnimator.SetBool("Attack", false);
-                    characterAnimator.SetBool("Idle", false);
-                }
-
+        public void LookAtTarget()
+        {
+            if(target == null)
+            {
+                return;
             }
+
+        Vector3 direction = (target.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * navMeshAgent.angularSpeed);
         }
     }
 }

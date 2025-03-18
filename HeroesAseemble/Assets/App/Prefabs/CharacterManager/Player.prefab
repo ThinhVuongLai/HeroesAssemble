@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9002645539561238198}
   - component: {fileID: 5845441523855907846}
   - component: {fileID: 8268931006338354368}
-  - component: {fileID: 2433452426160040900}
+  - component: {fileID: 4840992801484385849}
   m_Layer: 0
   m_Name: Cube
   m_TagString: FollowCube
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 439366386126117188}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 2}
+  m_LocalPosition: {x: 0.4, y: 0, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2433452426160040900
+--- !u!114 &4840992801484385849
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,10 +93,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 439366386126117188}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0fd0a8c020abb4ba4e4250dc8b6d94, type: 3}
+  m_Script: {fileID: 11500000, guid: f7a8a7545024f4a30a093a9a26c4f705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFill: 0
 --- !u!1 &1082960236587553868
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,6 +107,9 @@ GameObject:
   - component: {fileID: 936358813101489676}
   - component: {fileID: 1269834232136114954}
   - component: {fileID: 7131222125500295921}
+  - component: {fileID: 6065933755965350616}
+  - component: {fileID: 8579641545970399689}
+  - component: {fileID: 453151882216289019}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -142,7 +144,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1082960236587553868}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.05
   m_Speed: 3
   m_Acceleration: 8
   avoidancePriority: 50
@@ -169,6 +171,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   variableJoystick: {fileID: 0}
   joyStickMagnitude: 0
+--- !u!114 &6065933755965350616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082960236587553868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21e48c1f198204d128cc62c5f92a152c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8579641545970399689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082960236587553868}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5905f41a763b4e27b858ba51afd1c67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentPlayerStatus: -1
+--- !u!135 &453151882216289019
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082960236587553868}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4654288221960521364
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +228,7 @@ GameObject:
   - component: {fileID: 6062330909081225173}
   - component: {fileID: 6923891287091968384}
   - component: {fileID: 3404450320744539482}
-  - component: {fileID: 2549236255113878731}
+  - component: {fileID: 5124193136719161022}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: FollowCube
@@ -197,7 +245,7 @@ Transform:
   m_GameObject: {fileID: 4654288221960521364}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalPosition: {x: 0.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -253,7 +301,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2549236255113878731
+--- !u!114 &5124193136719161022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -262,10 +310,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4654288221960521364}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0fd0a8c020abb4ba4e4250dc8b6d94, type: 3}
+  m_Script: {fileID: 11500000, guid: f7a8a7545024f4a30a093a9a26c4f705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFill: 0
 --- !u!1 &5241582570443244745
 GameObject:
   m_ObjectHideFlags: 0
@@ -311,10 +358,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterIds: 
-  getCharacterInforChannel: {fileID: 11400000, guid: a49208ef7e4e446c1828e92bc50c213d, type: 2}
-  updateAssemplyChannel: {fileID: 11400000, guid: e6f9f688ad5e14fc7b51becf36d2ae0c, type: 2}
-  addCharacterChannel: {fileID: 11400000, guid: 81c57ac1a07b04edc96747e69ef75764, type: 2}
-  removeCharacterChannel: {fileID: 11400000, guid: 43d77a15c5d9e4752a22090f37bb6fbf, type: 2}
 --- !u!1 &5600328591756737142
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +369,7 @@ GameObject:
   - component: {fileID: 1693123455500620463}
   - component: {fileID: 7071059416172312875}
   - component: {fileID: 4631639297600650155}
-  - component: {fileID: 4389237175080856995}
+  - component: {fileID: 1882329863102819380}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: FollowCube
@@ -343,7 +386,7 @@ Transform:
   m_GameObject: {fileID: 5600328591756737142}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalPosition: {x: -0.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -399,7 +442,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4389237175080856995
+--- !u!114 &1882329863102819380
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -408,10 +451,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5600328591756737142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0fd0a8c020abb4ba4e4250dc8b6d94, type: 3}
+  m_Script: {fileID: 11500000, guid: f7a8a7545024f4a30a093a9a26c4f705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFill: 0
 --- !u!1 &6091607170073366255
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +465,7 @@ GameObject:
   - component: {fileID: 4637808745171011455}
   - component: {fileID: 5903383628845638022}
   - component: {fileID: 3222987083272804090}
-  - component: {fileID: 3400323290011409205}
+  - component: {fileID: 6575084479508799783}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: FollowCube
@@ -440,7 +482,7 @@ Transform:
   m_GameObject: {fileID: 6091607170073366255}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 2}
+  m_LocalPosition: {x: -0.4, y: 0, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -496,7 +538,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3400323290011409205
+--- !u!114 &6575084479508799783
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -505,10 +547,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6091607170073366255}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0fd0a8c020abb4ba4e4250dc8b6d94, type: 3}
+  m_Script: {fileID: 11500000, guid: f7a8a7545024f4a30a093a9a26c4f705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFill: 0
 --- !u!1 &7496436066396076779
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,7 +561,7 @@ GameObject:
   - component: {fileID: 248139236076714922}
   - component: {fileID: 2347032153159029269}
   - component: {fileID: 7674754887722331961}
-  - component: {fileID: 6227351072732510316}
+  - component: {fileID: 4157927908100303609}
   m_Layer: 0
   m_Name: Cube (4)
   m_TagString: FollowCube
@@ -537,7 +578,7 @@ Transform:
   m_GameObject: {fileID: 7496436066396076779}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: -2}
+  m_LocalPosition: {x: 0.4, y: 0, z: -0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -593,7 +634,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6227351072732510316
+--- !u!114 &4157927908100303609
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -602,10 +643,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7496436066396076779}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0fd0a8c020abb4ba4e4250dc8b6d94, type: 3}
+  m_Script: {fileID: 11500000, guid: f7a8a7545024f4a30a093a9a26c4f705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFill: 0
 --- !u!1 &7594525542025632981
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,7 +842,7 @@ GameObject:
   - component: {fileID: 2082800941946146435}
   - component: {fileID: 1529316186742830315}
   - component: {fileID: 4362672753287703109}
-  - component: {fileID: 7953121758378615766}
+  - component: {fileID: 9040509342662962959}
   m_Layer: 0
   m_Name: Cube (5)
   m_TagString: FollowCube
@@ -819,7 +859,7 @@ Transform:
   m_GameObject: {fileID: 9079319843432532373}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: -2}
+  m_LocalPosition: {x: -0.4, y: 0, z: -0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -875,7 +915,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7953121758378615766
+--- !u!114 &9040509342662962959
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -884,7 +924,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 9079319843432532373}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b0fd0a8c020abb4ba4e4250dc8b6d94, type: 3}
+  m_Script: {fileID: 11500000, guid: f7a8a7545024f4a30a093a9a26c4f705, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFill: 0

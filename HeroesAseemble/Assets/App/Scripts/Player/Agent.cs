@@ -87,91 +87,12 @@ namespace HeroesAssemble
                 {
                     gameObject.SetActive(false);
                 }
-
             }
         }
 
         private void StartAttackGo()
         {
             startAttack = true;
-        }
-
-        public void DamageCheck()
-        {
-            Debug.Log("attack check edildi goblin");
-            bool bDistance = agent.remainingDistance > agent.stoppingDistance + .5f;
-            if (target != null)
-            {
-                if (!bDistance && target.CompareTag("Player") && agent.remainingDistance > 0.15f && !isdead)
-                {
-                    if (GetComponent<EnemyTriggerChecked>().triggerPlayer)
-                    {
-                        Debug.Log("target can azalt�ld�");
-                        target.GetComponent<PlayerFollower>().Player.GetComponent<DemoEnemy>().currentHp -= (power);
-                        PlayerManager.Instance.DeadCheckPlayer();
-                    }
-                }
-                else if (!bDistance && target.tag == "Pokemon" && agent.remainingDistance > 0.15f & !isdead)
-                {
-                    if (GetComponent<EnemyTriggerChecked>().triggerPlayer)
-                    {
-                        target.GetComponent<DemoEnemy>().currentHp -= (power);
-                        if (target.GetComponent<DemoEnemy>().currentHp <= 0)
-                        {
-                            target.GetComponent<DemoEnemy>().currentHp = 0;
-                            target.GetComponent<DemoEnemy>().hideHealtbar();
-                            target.GetComponent<FriendlyAgent>().Dead();
-                            target = GameObject.FindGameObjectWithTag("Player");
-                            targetCount--;
-                        }
-                    }
-                }
-
-                if (target.tag == "Pokemon" || !target.activeSelf)
-                {
-                    if (target.GetComponent<CharacterController>().dead == true)
-                    {
-                        if (!isdead)
-                        {
-                            target = _player;
-                        }
-
-                        animator.SetBool("Attack", false);
-                    }
-                }
-            }
-            else
-            {
-                if (!isdead)
-                {
-                    target = _player;
-                }
-
-                animator.SetBool("Attack", false);
-            }
-        }
-
-        public void Dead()
-        {
-            isdead = true;
-            Deadposition = transform.position;
-            animator.SetBool("Dead", true);
-            Invoke("InActiveObj", 1.75f);
-
-            if (agentLevel == 1)
-            {
-                GameManager.Instance.getGreenGoblin--;
-            }
-            else if (agentLevel == 2)
-            {
-                GameManager.Instance.getBlueGoblin--;
-            }
-            else if (agentLevel == 3)
-            {
-                GameManager.Instance.getLevel3Goblin--;
-            }
-
-            deathParticle.GetComponent<ParticleSystem>().Play();
         }
 
         private void DownItem(int luckyCount, bool direckDown)

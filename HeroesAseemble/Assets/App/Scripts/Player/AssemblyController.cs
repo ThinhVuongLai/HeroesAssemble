@@ -8,24 +8,23 @@ namespace HeroesAssemble
     {
         [SerializeField] private List<int> characterIds = new List<int>();
 
-        [Header("Channel")]
-        [SerializeField] private GetCharacterInforChannel getCharacterInforChannel;
-        [SerializeField] private VoidChannel updateAssemplyChannel;
-        [SerializeField] private IntegerChannel addCharacterChannel;
-        [SerializeField] private IntegerChannel removeCharacterChannel;
-
         private void OnEnable()
         {
-            updateAssemplyChannel.AddListener(UpdateAssemply);
-            addCharacterChannel.AddListener(AddCharacterIntoAssemply);
-            removeCharacterChannel.AddListener(RemoveCharacterFromAssemply);
+            EventController.Instance.UpdateAssemplyChannel.AddListener(UpdateAssemply);
+            EventController.Instance.AddCharacterChannel.AddListener(AddCharacterIntoAssemply);
+            EventController.Instance.RemoveCharacterChannel.AddListener(RemoveCharacterFromAssemply);
         }
 
         private void OnDisable()
         {
-            updateAssemplyChannel.RemoveListener(UpdateAssemply);
-            addCharacterChannel.RemoveListener(AddCharacterIntoAssemply);
-            removeCharacterChannel.RemoveListener(RemoveCharacterFromAssemply);
+            if(EventController.Instance == null)
+            {
+                return;
+            }
+
+            EventController.Instance.UpdateAssemplyChannel.RemoveListener(UpdateAssemply);
+            EventController.Instance.AddCharacterChannel.RemoveListener(AddCharacterIntoAssemply);
+            EventController.Instance.RemoveCharacterChannel.RemoveListener(RemoveCharacterFromAssemply);
         }
 
         private void AddCharacterIntoAssemply(int characterId)
@@ -47,6 +46,7 @@ namespace HeroesAssemble
         private void UpdateAssemply()
         {
             CharacterInfor characterInfor = null;
+            CharacterController currentCharacterController = null;
             GameObject currentPrefab = null;
             int currentCharacterId = 0;
             GameObject currentCharacterObject = null;
@@ -55,16 +55,16 @@ namespace HeroesAssemble
             for (int i = 0, max = characterIds.Count; i < max; i++)
             {
                 currentCharacterId = characterIds[i];
-                characterInfor = getCharacterInforChannel.RunChannel(currentCharacterId);
+                characterInfor = EventController.Instance.GetCharacterInforChannel.RunChannel(currentCharacterId);
 
                 if (characterInfor != null)
                 {
                     currentPrefab = characterInfor.characterPrefab;
                 }
 
-                if(currentPrefab!=null)
+                if (currentPrefab != null)
                 {
-                    if (CharacterList.Instance.pokemonListArray[i].GetComponent<State>().isFill == false)
+                    if (CharacterList.Instance.CharacterSlotStatuses[i].IsFullSlot.Equals(false))
                     {
                         spawnTransform = CharacterList.Instance.pokemonListArray[i].transform;
                     }
@@ -75,6 +75,9 @@ namespace HeroesAssemble
                     }
 
                     currentCharacterObject = Instantiate(currentPrefab, spawnTransform.position, Quaternion.identity);
+                    currentCharacterController = currentCharacterObject.GetComponent<CharacterController>();
+                    currentCharacterController.Init(currentCharacterId);
+                    EventController.Instance.AddCharacterControllerChannel.RunCharacterControllerChannel(currentCharacterController);
                 }
             }
         }

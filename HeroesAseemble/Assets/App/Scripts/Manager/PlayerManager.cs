@@ -9,11 +9,6 @@ namespace HeroesAssemble
         public bool isClicking;
         public GameObject playerDeath;
 
-        [Header("Channel")]
-        [SerializeField] private VoidChannel updateAssemplyChannel;
-        [SerializeField] private IntegerChannel addCharacterChannel;
-        [SerializeField] private IntegerChannel removeCharacterChannel;
-
         public override void Awake()
         {
             base.Awake();
@@ -58,14 +53,10 @@ namespace HeroesAssemble
 
             if(Input.GetKeyDown(KeyCode.M))
             {
-                //addCharacterChannel.RunIntegerChannel(0);
-                //addCharacterChannel.RunIntegerChannel(1);
-                //addCharacterChannel.RunIntegerChannel(2);
-                //addCharacterChannel.RunIntegerChannel(3);
-                addCharacterChannel.RunIntegerChannel(4);
-                addCharacterChannel.RunIntegerChannel(5);
+                EventController.Instance.AddCharacterChannel.RunIntegerChannel(4);
+                EventController.Instance.AddCharacterChannel.RunIntegerChannel(5);
 
-                updateAssemplyChannel.RunVoidChannel();
+                EventController.Instance.UpdateAssemplyChannel.RunVoidChannel();
             }
         }
     }

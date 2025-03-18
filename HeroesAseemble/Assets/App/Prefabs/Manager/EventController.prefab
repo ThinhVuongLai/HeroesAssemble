@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3232928901347671892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8868796726737244694}
+  - component: {fileID: 1410633714418966426}
+  m_Layer: 0
+  m_Name: EventController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8868796726737244694
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3232928901347671892}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.9720671, y: -0.062196285, z: -5.278151}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1410633714418966426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3232928901347671892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83433bda4bde647d181cdd69dcd8895e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateAssemplyChannel: {fileID: 11400000, guid: e6f9f688ad5e14fc7b51becf36d2ae0c, type: 2}
+  clearCharacterControllers: {fileID: 11400000, guid: 1d8f889aa98884f61b99bb5b1262806d, type: 2}
+  clearEnemyTransforms: {fileID: 11400000, guid: 97cbe5b948ae8424583c337a4f021fe0, type: 2}
+  setEnemyForCharacter: {fileID: 11400000, guid: d5f245298b4d344bc8c1bdb9795224f8, type: 2}
+  onPlayerIdle: {fileID: 11400000, guid: 446ba694fccb44cababe50b38333b4ff, type: 2}
+  onPlayerMove: {fileID: 11400000, guid: ab7cd06a65d9a4009bbf69159b9aa095, type: 2}
+  getCharacterInforChannel: {fileID: 11400000, guid: a49208ef7e4e446c1828e92bc50c213d, type: 2}
+  addCharacterChannel: {fileID: 11400000, guid: 81c57ac1a07b04edc96747e69ef75764, type: 2}
+  removeCharacterChannel: {fileID: 11400000, guid: 43d77a15c5d9e4752a22090f37bb6fbf, type: 2}
+  addCharacterControllerChannel: {fileID: 11400000, guid: 69e87ae6fcf014fbf8c67ae46115db2a, type: 2}
+  removeCharacterControllerChannel: {fileID: 11400000, guid: be4e1c662bfe5415b836c7c5681f53a8, type: 2}
+  addEnemyTransform: {fileID: 11400000, guid: 1aaf2ba517bcb4ab281c20408d8790b9, type: 2}
+  removeEnemyTransform: {fileID: 11400000, guid: 0d6536803a6fe486da7d5e5b880d5701, type: 2}
+  getPlayerStatusChannel: {fileID: 11400000, guid: 1d830b24ea7854256a509dc295e8e619, type: 2}

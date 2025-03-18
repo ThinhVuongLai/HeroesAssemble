@@ -38,14 +38,18 @@ namespace HeroesAssemble
                     Vector3 movement = new Vector3(horizontal, 0, vertical);
 
                     _agent.Move(movement * Time.deltaTime * _agent.speed);
-                    this.transform.position = Vector3.Lerp(this.transform.position, _agent.nextPosition, _moveSmoothing);
+
+                    // this.transform.position = Vector3.Lerp(this.transform.position, _agent.nextPosition, _moveSmoothing);
+
+                    EventController.Instance.OnPlayerMove?.RunVoidChannel();
                 }
                 else
                 {
                     _agent.updatePosition = false;
-                }
 
+                    EventController.Instance.OnPlayerIdle?.RunVoidChannel();
+                }
             }
-        }
+        } 
     }
 }

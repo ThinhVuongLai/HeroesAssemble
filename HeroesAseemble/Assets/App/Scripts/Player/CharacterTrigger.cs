@@ -1,3 +1,4 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,19 +18,37 @@ namespace HeroesAssemble
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.tag == "Goblin" && characterController.attack == false && GetComponent<FriendlyAgent>().Target != null && other.GetComponent<Agent>().targetCount <= 2)
+            if(transform.name.Equals("Mage(Clone)"))
             {
-                characterController.attack = true;
-
-                if (friendlyAgent.Target.tag == "FollowCube")
-                {
-                    friendlyAgent.Target.GetComponent<State>().isFill = false;
-                }
-
-                friendlyAgent.Target = other.gameObject;
-                other.GetComponent<Agent>().target = gameObject;
-                other.GetComponent<Agent>().targetCount++;
+                Debug.LogError("1111111111111111");
             }
+
+            
+            if(characterController == null)
+            {
+                return;
+            }
+
+            if(!characterController.CurrentCharacterStatus.Equals(CharacterStatus.NormalAttack))
+            {
+                return;
+            }
+
+            if (other.CompareTag(GlobalInfor.CharacterTag) && !IsDead()
+                && characterController.CurrentEnemy == null)
+            {
+
+            }
+            else if (other.CompareTag(GlobalInfor.EnemyTag) && !IsDead())
+            {
+                characterController.SetTargetToEnemy(other.gameObject);
+                characterController.CurrentEnemy = other.GetComponent<EnemyController>();
+            }
+        }
+
+        public bool IsDead()
+        {
+            return characterController.CurrentCharacterStatus.Equals(CharacterStatus.Dead);
         }
     }
 }
