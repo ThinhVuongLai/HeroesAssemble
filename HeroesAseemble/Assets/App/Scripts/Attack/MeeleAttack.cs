@@ -11,6 +11,7 @@ namespace HeroesAssemble
         [SerializeField] private float attackAngle = 30f; // Angle of the fan-shaped area
         [SerializeField] private bool isPlayer;
 
+        private CharacterBase characterBase;
         private CharacterBase enemyBase;
 
         private float multiDamage = 1f;
@@ -36,7 +37,12 @@ namespace HeroesAssemble
 
         public void SetEnemyController(CharacterBase characterBase)
         {
-            enemyBase = characterBase;   
+            enemyBase = characterBase;
+        }
+
+        public void SetCharacterController(CharacterBase characterBase)
+        {
+            this.characterBase = characterBase;
         }
 
         public GameObject DetectClosestEnemyInFanArea()

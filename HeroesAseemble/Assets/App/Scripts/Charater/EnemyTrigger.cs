@@ -27,16 +27,13 @@ namespace HeroesAssemble
 
             if(other.CompareTag(GlobalInfor.CharacterTag) && !IsDead())
             {
-                enemyController.SetTargetToEnemy(other.gameObject);
-                enemyController.CharacterController = other.GetComponent<CharacterController>();
-                enemyController.ChangeStatus(CharacterStatus.NormalAttack);
+                enemyController.SetEnemy(other.gameObject);
             }
         }
 
         private void OnTriggerExit(Collider other)
         {
-            enemyController.SetTargetToEnemy(null);
-            enemyController.ChangeStatus(CharacterStatus.Idle);
+            enemyController.SetEnemy(null);
         }
 
         public bool IsDead()
@@ -46,7 +43,7 @@ namespace HeroesAssemble
                 return false;
             }
 
-            return enemyController.CurrentCharacterStatus.Equals(CharacterStatus.Dead);
+            return enemyController.IsDead();
         }
 
     }

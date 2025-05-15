@@ -50,5 +50,36 @@ namespace HeroesAssemble
 
             ChangeStatus(CharacterStatus.Idle);
         }
+
+        public override void RunInitAttack()
+        {
+            if (characterController == null || AttackInterface == null)
+            {
+                return;
+            }
+            else
+            {
+                AttackInterface.SetEnemyController(characterController);
+                AttackInterface.SetCharacterController(this);
+
+                base.RunInitAttack();
+            }
+        }
+
+        public void SetEnemy(GameObject enemyObject)
+        {
+            if (enemyObject == null)
+            {
+                RemoveTarget();
+                CharacterController = null;
+                ChangeStatus(CharacterStatus.Idle);
+            }
+            else
+            {
+                SetTargetToEnemy(enemyObject);
+                CharacterController = enemyObject.GetComponent<CharacterController>();
+                ChangeStatus(CharacterStatus.NormalAttack);
+            }
+        }
     }
 }

@@ -14,5 +14,7 @@ namespace HeroesAssemble
         public void FinishAttack();
 
         public void SetEnemyController(CharacterBase characterBase);
+
+        public void SetCharacterController(CharacterBase characterBase);
     }
 }

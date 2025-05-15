@@ -20,6 +20,11 @@ namespace HeroesAssemble
             moveDirect = setDirect;
         }
 
+        public void Init(BulletSpawnFrom bulletSpawnFrom)
+        {
+            this.bulletSpawnFrom = bulletSpawnFrom;
+        }
+
         private void Update()
         {
             MoveBullet();

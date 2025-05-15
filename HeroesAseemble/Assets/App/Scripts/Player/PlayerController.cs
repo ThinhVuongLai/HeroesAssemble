@@ -106,10 +106,7 @@ namespace HeroesAssemble
 
                     if(enemyTransform != null)
                     {
-                        currentCharacterController.SetTargetToEnemy(enemyTransform.gameObject);
-                        EnemyController enemyController=enemyTransform.GetComponent<EnemyController>();
-                        currentCharacterController.CurrentEnemy = enemyController;
-                        currentCharacterController.ChangeStatus(CharacterStatus.NormalAttack);
+                        currentCharacterController.SetEnemy(enemyTransform.gameObject);
                     }
                 }
             }
@@ -121,7 +118,7 @@ namespace HeroesAssemble
 
             float distance = 0;
             float minDistance = -1;
-            for(int i = 0, length=enemyTransforms.Count; i<length; i++)
+            for(int i = 0, length = enemyTransforms.Count; i<length; i++)
             {
                 distance = Vector3.Distance(characterTransform.position,enemyTransforms[i].position);
 
@@ -167,8 +164,7 @@ namespace HeroesAssemble
         {
             for(int i = 0, length = characterControllers.Count; i<length; i++)
             {
-                characterControllers[i].SetTargetToMovePoint();
-                characterControllers[i].ChangeStatus(CharacterStatus.Run);
+                characterControllers[i].SetEnemy(null);
             }
         }
     }

@@ -84,8 +84,37 @@ namespace HeroesAssemble
             else
             {
                 AttackInterface.SetEnemyController(currentEnemy);
+                AttackInterface.SetCharacterController(this);
 
                 base.RunInitAttack();
+            }
+        }
+
+        public override void EnemyDeadAction()
+        {
+            base.EnemyDeadAction();
+
+            EventController.Instance.OnPlayerIdle?.RunVoidChannel();
+        }
+
+        public void SetEnemy(GameObject enemyObject)
+        {
+            if(enemyObject==null)
+            {
+                SetTargetToMovePoint();
+
+                CurrentEnemy = null;
+
+                ChangeStatus(CharacterStatus.Run);
+            }
+            else
+            {
+                SetTargetToEnemy(enemyObject);
+
+                EnemyController enemyController = enemyObject.GetComponent<EnemyController>();
+                CurrentEnemy = enemyController;
+
+                ChangeStatus(CharacterStatus.NormalAttack);
             }
         }
     }

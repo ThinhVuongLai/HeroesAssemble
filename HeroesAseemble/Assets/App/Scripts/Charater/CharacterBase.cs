@@ -18,6 +18,7 @@ namespace HeroesAssemble
         protected BaseCharacterStatus deadStatus;
 
         [SerializeField] private IAttack attackInterface;
+        [SerializeField] private Collider characterCollider;
 
         private bool hasTargetEnemy;
         private int currentHeath;
@@ -76,6 +77,8 @@ namespace HeroesAssemble
             friendlyAgent = GetComponent<FriendlyAgent>();
             characterAnimator = GetComponent<Animator>();
             attackInterface = GetComponent<IAttack>();
+
+            characterCollider = GetComponent<Collider>();
         }
 
         public virtual void Init(int characterId)
@@ -100,6 +103,10 @@ namespace HeroesAssemble
             }
         }
 
+        public bool IsDead()
+        {
+            return currentCharacterStatus.Equals(CharacterStatus.Dead);
+        }
 
         public void ChangeStatus(CharacterStatus characterStatus)
         {
@@ -157,7 +164,7 @@ namespace HeroesAssemble
 
         public virtual void GetDamage(int damageAmount)
         {
-            if(damageAmount<0)
+            if(damageAmount<=0)
             {
                 return;
             }
@@ -166,7 +173,7 @@ namespace HeroesAssemble
 
             if(currentHeath <= 0)
             {
-
+                ChangeStatus(CharacterStatus.Dead);
             }
         }
 
@@ -199,10 +206,35 @@ namespace HeroesAssemble
             hasTargetEnemy = true;
         }
 
+        public void RemoveTarget()
+        {
+            friendlyAgent.Target = null;
+            hasTargetEnemy = false;
+        }
+
         public void SetTargetToMovePoint()
         {
             friendlyAgent.SetTargetToTargetMove();
             hasTargetEnemy = false;
+        }
+
+        public virtual void EnemyDeadAction()
+        {
+
+        }
+
+        public void CheckEnemy()
+        {
+            characterCollider.enabled = false;
+
+            StartCoroutine(CRCheckEnemy());
+        }
+
+        private IEnumerator CRCheckEnemy()
+        {
+            yield return null;
+
+            characterCollider.enabled = true;
         }
     }
 

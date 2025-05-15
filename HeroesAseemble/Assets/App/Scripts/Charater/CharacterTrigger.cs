@@ -40,7 +40,12 @@ namespace HeroesAssemble
 
         public bool IsDead()
         {
-            return characterController.CurrentCharacterStatus.Equals(CharacterStatus.Dead);
+            if(characterController == null)
+            {
+                return false;
+            }
+
+            return characterController.IsDead();
         }
     }
 }

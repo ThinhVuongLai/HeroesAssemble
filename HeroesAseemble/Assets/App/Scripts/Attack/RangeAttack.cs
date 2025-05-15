@@ -11,6 +11,7 @@ namespace HeroesAssemble
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private Transform spawnTransform;
 
+        private CharacterBase characterBase;
         private CharacterBase enemyBase;
 
         private Vector3 moveDirect = Vector3.zero;
@@ -23,6 +24,16 @@ namespace HeroesAssemble
             BulletController bulletController = currentBullet.GetComponent<BulletController>();
             if(bulletController != null)
             {
+                bool isCharacter = enemyBase is CharacterController;
+                if(isCharacter)
+                {
+                    bulletController.Init(BulletSpawnFrom.Player);
+                }
+                else
+                {
+                    bulletController.Init(BulletSpawnFrom.Enemy);
+                }
+
                 SetMoveDirect(enemyBase.transform.position);
                 bulletController.SetMoveDirect(moveDirect);
             }
@@ -50,6 +61,11 @@ namespace HeroesAssemble
         public void SetEnemyController(CharacterBase characterBase)
         {
             enemyBase = characterBase;
+        }
+
+        public void SetCharacterController(CharacterBase characterBase)
+        {
+            this.characterBase = characterBase;
         }
     }
 }
