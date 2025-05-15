@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace HeroesAssemble
 {
-    public class CharacterList : SceneDependentSingleton<CharacterList>
+    public class PlayerCharacterList : SceneDependentSingleton<PlayerCharacterList>
     {
         public List<GameObject> pokemonListArray = new List<GameObject>();
         private List<SlotStatus> characterSlotStatuses = new List<SlotStatus>();

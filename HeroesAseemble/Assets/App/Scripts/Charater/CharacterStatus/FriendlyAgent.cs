@@ -9,7 +9,7 @@ namespace HeroesAssemble
     public class FriendlyAgent : MonoBehaviour
     {
         [SerializeField] private GameObject target;
-        private CharacterController characterController;
+        private CharacterBase characterBase;
         private NavMeshAgent navMeshAgent;
         private bool hasTargetEnemy;
         private GameObject targetToMove;
@@ -28,7 +28,7 @@ namespace HeroesAssemble
 
         private void Awake()
         {
-            characterController = GetComponent<CharacterController>();
+            characterBase = GetComponent<CharacterBase>();
             navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
@@ -37,7 +37,7 @@ namespace HeroesAssemble
             targetToMove=targetObject;
         }
 
-        public bool IsEnoughDisTanceToTarget()
+        public bool IsEnoughDistanceToTarget(float offsetDistance = 0f)
         {
             if(target==null)
             {
@@ -46,21 +46,21 @@ namespace HeroesAssemble
 
             float distance = GetDistanceToTarget();
 
-            return distance <= navMeshAgent.stoppingDistance + 0.5f;
+            return distance <= navMeshAgent.stoppingDistance + offsetDistance;
         }
 
         public bool IsEnoughDistanceToAttack()
         {
             float distanceToTarget = GetDistanceToTarget();
 
-            return distanceToTarget <= characterController.CurrentCharacterInfor.beginAttackDistance;
+            return distanceToTarget <= characterBase.CurrentCharacterInfor.beginAttackDistance;
         }
 
         public bool IsTooNearTarget()
         {
             float distanceToTarget = GetDistanceToTarget();
 
-            return distanceToTarget < characterController.CurrentCharacterInfor.beginAttackDistance;
+            return distanceToTarget < characterBase.CurrentCharacterInfor.beginAttackDistance;
         }
 
         public void MoveWhenTooNearTarget()
@@ -70,7 +70,7 @@ namespace HeroesAssemble
 
             Vector3 direction = GetDirection(characterPosition, targetPosition);
             
-            Vector3 targetMovePosition=target.transform.position + (direction*(characterController.CurrentCharacterInfor.beginAttackDistance - 0.1f));
+            Vector3 targetMovePosition=target.transform.position + (direction*(characterBase.CurrentCharacterInfor.beginAttackDistance - 0.1f));
 
             navMeshAgent.SetDestination(targetMovePosition);
         }

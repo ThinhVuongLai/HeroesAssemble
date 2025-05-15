@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace HeroesAssemble
 {
-    public class AssemblyController : MonoBehaviour
+    public class PlayerAssemblyController : MonoBehaviour
     {
         private const int characterMax = 6;
         [SerializeField] private List<int> characterIds = new List<int>();
@@ -89,9 +89,9 @@ namespace HeroesAssemble
 
                 if (currentPrefab != null)
                 {
-                    if (CharacterList.Instance.CharacterSlotStatuses[i].IsFullSlot.Equals(false))
+                    if (PlayerCharacterList.Instance.CharacterSlotStatuses[i].IsFullSlot.Equals(false))
                     {
-                        spawnTransform = CharacterList.Instance.pokemonListArray[i].transform;
+                        spawnTransform = PlayerCharacterList.Instance.pokemonListArray[i].transform;
                     }
 
                     if (spawnTransform == null)

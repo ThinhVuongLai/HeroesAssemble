@@ -9,8 +9,6 @@ namespace HeroesAssemble
         protected CharacterTrigger characterTrigger;
         private EnemyController currentEnemy;
 
-        private bool hasTargetEnemy;
-
         private GameObject assembleTarget;
 
         public CharacterTrigger CharacterTrigger
@@ -33,15 +31,6 @@ namespace HeroesAssemble
             }
         }
 
-        public bool HasTargetEnemy
-        {
-            get => hasTargetEnemy;
-            set
-            {
-                hasTargetEnemy = value;
-            }
-        }
-
         protected override void Awake()
         {
             base.Awake();
@@ -51,14 +40,14 @@ namespace HeroesAssemble
 
         private void SetAssembleTarget()
         {
-            var characterSlotStatuses = CharacterList.Instance.CharacterSlotStatuses;
+            var characterSlotStatuses = PlayerCharacterList.Instance.CharacterSlotStatuses;
 
             for (int i = 0, length = characterSlotStatuses.Count; i < length; i++)
             {
                 if (characterSlotStatuses[i].IsFullSlot.Equals(false))
                 {
                     characterSlotStatuses[i].IsFullSlot = true;
-                    assembleTarget = CharacterList.Instance.pokemonListArray[i];
+                    assembleTarget = PlayerCharacterList.Instance.pokemonListArray[i];
 
                     break;
                 }
@@ -84,18 +73,6 @@ namespace HeroesAssemble
             SetTargetToMovePoint();
 
             ChangeStatus(CharacterStatus.Idle);
-        }
-
-        public void SetTargetToEnemy(GameObject enemyObject)
-        {
-            friendlyAgent.Target = enemyObject;
-            hasTargetEnemy = true;
-        }
-
-        public void SetTargetToMovePoint()
-        {
-            friendlyAgent.SetTargetToTargetMove();
-            hasTargetEnemy = false;
         }
 
         public override void RunInitAttack()

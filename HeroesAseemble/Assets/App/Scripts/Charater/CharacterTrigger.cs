@@ -8,12 +8,10 @@ namespace HeroesAssemble
     public class CharacterTrigger : MonoBehaviour
     {
         private CharacterController characterController;
-        private FriendlyAgent friendlyAgent;
 
         private void Awake()
         {
             characterController = GetComponent<CharacterController>();
-            friendlyAgent = GetComponent<FriendlyAgent>();
         }
 
         private void OnTriggerEnter(Collider other)

@@ -19,6 +19,9 @@ namespace HeroesAssemble
 
         [SerializeField] private IAttack attackInterface;
 
+        private bool hasTargetEnemy;
+        private int currentHeath;
+
         public CharacterInfor CurrentCharacterInfor
         {
             get
@@ -59,7 +62,14 @@ namespace HeroesAssemble
             }
         }
 
-        private int currentHeath;
+        public bool HasTargetEnemy
+        {
+            get => hasTargetEnemy;
+            set
+            {
+                hasTargetEnemy = value;
+            }
+        }
 
         protected virtual void Awake()
         {
@@ -181,6 +191,18 @@ namespace HeroesAssemble
         public virtual void FinishAttack()
         {
             AttackInterface?.FinishAttack();
+        }
+
+        public void SetTargetToEnemy(GameObject enemyObject)
+        {
+            friendlyAgent.Target = enemyObject;
+            hasTargetEnemy = true;
+        }
+
+        public void SetTargetToMovePoint()
+        {
+            friendlyAgent.SetTargetToTargetMove();
+            hasTargetEnemy = false;
         }
     }
 

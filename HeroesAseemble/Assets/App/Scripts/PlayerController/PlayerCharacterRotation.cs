@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace HeroesAssemble
 {
-    public class CharacterRotation : MonoBehaviour
+    public class PlayerCharacterRotation : MonoBehaviour
     {
         [SerializeField] private VariableJoystick variableJoystick;
 

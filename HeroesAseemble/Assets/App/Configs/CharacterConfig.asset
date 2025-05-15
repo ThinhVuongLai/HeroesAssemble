@@ -56,9 +56,9 @@ MonoBehaviour:
     normalAttackAnimationName: hr_Mage_Attack
     beginAttackDistance: 3
   - characterId: 6
-    characterPrefab: {fileID: 5658774782158414467, guid: 8449efdc5208dba40a4cba2ab1cfdf3d, type: 3}
+    characterPrefab: {fileID: 5658774782158414467, guid: d2e480cef7f4e412b96ea82ab4ca4f5c, type: 3}
     heath: 6
     idleAnimationName: en_Goblin_Idle
-    walkAnimationName: 
+    walkAnimationName: en_Goblin_Walk
     normalAttackAnimationName: en_Goblin_Attack
     beginAttackDistance: 1

@@ -8,6 +8,17 @@ namespace HeroesAssemble
     {
         [SerializeField] private int characterId;
 
+        private CharacterController characterController;
+
+        public CharacterController CharacterController
+        {
+            get => characterController;
+            set
+            {
+                characterController = value;
+            }
+        }
+
         private void Start()
         {
             StartCoroutine(CRInitCharacter());
