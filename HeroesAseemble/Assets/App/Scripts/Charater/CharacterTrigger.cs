@@ -21,31 +21,15 @@ namespace HeroesAssemble
                 return;
             }
 
-            if(!characterController.CurrentCharacterStatus.Equals(CharacterStatus.NormalAttack))
+            if(characterController.IsDead() || characterController.CurrentEnemy != null)
             {
                 return;
             }
 
-            if (other.CompareTag(GlobalInfor.CharacterTag) && !IsDead()
-                && characterController.CurrentEnemy == null)
+            if (other.CompareTag(GlobalInfor.EnemyTag))
             {
-
+                characterController.SetEnemy(other.gameObject);
             }
-            else if (other.CompareTag(GlobalInfor.EnemyTag) && !IsDead())
-            {
-                characterController.SetTargetToEnemy(other.gameObject);
-                characterController.CurrentEnemy = other.GetComponent<EnemyController>();
-            }
-        }
-
-        public bool IsDead()
-        {
-            if(characterController == null)
-            {
-                return false;
-            }
-
-            return characterController.IsDead();
         }
     }
 }

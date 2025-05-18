@@ -6,8 +6,9 @@ namespace HeroesAssemble
 {
     public class CharacterBase : MonoBehaviour
     {
+        #region Variables
         protected CharacterInfor characterInfor;
-        protected CharacterStatus currentCharacterStatus = CharacterStatus.None;
+        [SerializeField] protected CharacterStatus currentCharacterStatus = CharacterStatus.None;
         protected FriendlyAgent friendlyAgent;
         protected Animator characterAnimator;
 
@@ -24,7 +25,9 @@ namespace HeroesAssemble
 
         private bool hasTargetEnemy;
         private int currentHeath;
+        #endregion
 
+        #region Property
         public CharacterInfor CurrentCharacterInfor
         {
             get
@@ -73,7 +76,9 @@ namespace HeroesAssemble
                 hasTargetEnemy = value;
             }
         }
+        #endregion
 
+        #region Unity Behavior Functions
         protected virtual void Awake()
         {
             friendlyAgent = GetComponent<FriendlyAgent>();
@@ -82,43 +87,36 @@ namespace HeroesAssemble
 
             characterCollider = GetComponent<Collider>();
 
-            if(animationEventController)
+            if (animationEventController)
             {
                 animationEventController = GetComponent<AnimationEventController>();
             }
 
-            if(animationEventController)
+            if (animationEventController)
             {
                 animationEventController.AddAction(0, RunInitAttack);
                 animationEventController.AddAction(1, FinishAttack);
             }
         }
 
-        public virtual void Init(int characterId)
+        private void Update()
         {
-            characterInfor = EventController.Instance.GetCharacterInforChannel.RunChannel(characterId);
-
-            currentHeath = characterInfor.heath;
-        }
-
-        public void PlayAnimation(string animationName, bool isForcePlay = false)
-        {
-            if (characterAnimator && !string.IsNullOrEmpty(animationName))
+            if (currentStatus != null)
             {
-                if (isForcePlay)
-                {
-                    characterAnimator.Play(animationName, 0, 0);
-                }
-                else
-                {
-                    characterAnimator.CrossFade(animationName, 0.1f, 0, 0);
-                }
+                currentStatus.UpdateStatus();
             }
         }
+        #endregion
 
+        #region Status Functions
         public bool IsDead()
         {
             return currentCharacterStatus.Equals(CharacterStatus.Dead);
+        }
+
+        public bool IsAttack()
+        {
+            return currentCharacterStatus.Equals(CharacterStatus.NormalAttack);
         }
 
         public void ChangeStatus(CharacterStatus characterStatus)
@@ -155,6 +153,7 @@ namespace HeroesAssemble
                 case CharacterStatus.Dead:
                     {
                         currentStatus = deadStatus;
+                        DeadAction();
                     }
                     break;
                 default:
@@ -167,14 +166,36 @@ namespace HeroesAssemble
             }
         }
 
-        private void Update()
+        protected virtual void DeadAction()
         {
-            if (currentStatus != null)
+            if (characterCollider)
             {
-                currentStatus.UpdateStatus();
+                characterCollider.enabled = false;
+            }
+
+            if(friendlyAgent)
+            {
+                friendlyAgent.enabled = false;
             }
         }
 
+        public virtual void Reborn()
+        {
+            if (characterCollider)
+            {
+                characterCollider.enabled = true;
+            }
+
+            if (friendlyAgent)
+            {
+                friendlyAgent.enabled = true;
+            }
+
+            ChangeStatus(CharacterStatus.Idle);
+        }
+        #endregion
+
+        #region Damage Functions
         public virtual void GetDamage(int damageAmount)
         {
             if(damageAmount<=0)
@@ -189,7 +210,9 @@ namespace HeroesAssemble
                 ChangeStatus(CharacterStatus.Dead);
             }
         }
+        #endregion
 
+        #region Heath Functions
         public virtual void AddHeath(int addAmount)
         {
             if(addAmount>0)
@@ -197,7 +220,9 @@ namespace HeroesAssemble
                 currentHeath+=addAmount;
             }
         }
+        #endregion
 
+        #region Attack Functions
         public virtual void RunInitAttack()
         {
             AttackInterface?.InitAttack();
@@ -212,7 +237,9 @@ namespace HeroesAssemble
         {
             AttackInterface?.FinishAttack();
         }
+        #endregion
 
+        #region Target Move Functions
         public void SetTargetToEnemy(GameObject enemyObject)
         {
             friendlyAgent.Target = enemyObject;
@@ -230,15 +257,12 @@ namespace HeroesAssemble
             friendlyAgent.SetTargetToTargetMove();
             hasTargetEnemy = false;
         }
+        #endregion
 
-        public virtual void EnemyDeadAction()
-        {
-
-        }
-
+        #region Enemy Functions
         public virtual void SetEnemy(GameObject enemyObject)
         {
-
+            
         }
 
         public void CheckEnemy()
@@ -254,6 +278,31 @@ namespace HeroesAssemble
 
             characterCollider.enabled = true;
         }
+        #endregion
+
+        #region Other Functions
+        public virtual void Init(int characterId)
+        {
+            characterInfor = EventController.Instance.GetCharacterInforChannel.RunChannel(characterId);
+
+            currentHeath = characterInfor.heath;
+        }
+
+        public void PlayAnimation(string animationName, bool isForcePlay = false)
+        {
+            if (characterAnimator && !string.IsNullOrEmpty(animationName))
+            {
+                if (isForcePlay)
+                {
+                    characterAnimator.Play(animationName, 0, 0);
+                }
+                else
+                {
+                    characterAnimator.CrossFade(animationName, 0.1f, 0, 0);
+                }
+            }
+        }
+        #endregion
     }
 
     public enum CharacterStatus

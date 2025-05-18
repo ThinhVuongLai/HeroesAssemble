@@ -7,7 +7,8 @@ namespace HeroesAssemble
     public class CharacterController : CharacterBase
     {
         protected CharacterTrigger characterTrigger;
-        private EnemyController currentEnemy;
+
+        [SerializeField] private EnemyController currentEnemy;
 
         private GameObject assembleTarget;
 
@@ -90,11 +91,29 @@ namespace HeroesAssemble
             }
         }
 
-        public override void EnemyDeadAction()
+        protected override void DeadAction()
         {
-            base.EnemyDeadAction();
+            base.DeadAction();
 
-            EventController.Instance.OnPlayerIdle?.RunVoidChannel();
+            if(characterTrigger)
+            {
+                characterTrigger.enabled = false;
+            }
+
+            CurrentEnemy = null;
+            RemoveTarget();
+        }
+
+        public override void Reborn()
+        {
+            base.Reborn();
+
+            if (characterTrigger)
+            {
+                characterTrigger.enabled = true;
+            }
+
+            EventController.Instance.SetEnemyForCharacter.RunVoidChannel();
         }
 
         public override void SetEnemy(GameObject enemyObject)
@@ -103,19 +122,21 @@ namespace HeroesAssemble
 
             if (enemyObject == null)
             {
-                SetTargetToMovePoint();
-
                 CurrentEnemy = null;
 
+                HasTargetEnemy = false;
+
+                SetTargetToMovePoint();
                 ChangeStatus(CharacterStatus.Run);
             }
             else
             {
-                SetTargetToEnemy(enemyObject);
-
                 EnemyController enemyController = enemyObject.GetComponent<EnemyController>();
                 CurrentEnemy = enemyController;
 
+                HasTargetEnemy = true;
+
+                SetTargetToEnemy(enemyObject);
                 ChangeStatus(CharacterStatus.NormalAttack);
             }
         }

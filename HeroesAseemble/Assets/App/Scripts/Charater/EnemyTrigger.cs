@@ -20,6 +20,11 @@ namespace HeroesAssemble
                 return;
             }
 
+            if(enemyController.IsDead())
+            {
+                return;
+            }
+
             if(enemyController.CharacterController!=null)
             {
                 return;
@@ -33,7 +38,10 @@ namespace HeroesAssemble
 
         private void OnTriggerExit(Collider other)
         {
-            enemyController.SetEnemy(null);
+            if (other.Equals(enemyController.CharacterController) && !enemyController.CharacterController.IsAttack())
+            {
+                enemyController.SetEnemy(null);
+            }
         }
 
         public bool IsDead()

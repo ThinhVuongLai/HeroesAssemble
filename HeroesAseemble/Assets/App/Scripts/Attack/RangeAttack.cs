@@ -27,11 +27,11 @@ namespace HeroesAssemble
                 bool isCharacter = enemyBase is CharacterController;
                 if(isCharacter)
                 {
-                    bulletController.Init(BulletSpawnFrom.Player);
+                    bulletController.Init(BulletSpawnFrom.Enemy);
                 }
                 else
                 {
-                    bulletController.Init(BulletSpawnFrom.Enemy);
+                    bulletController.Init(BulletSpawnFrom.Player);
                 }
 
                 SetMoveDirect(enemyBase.transform.position);
@@ -63,8 +63,6 @@ namespace HeroesAssemble
             if (enemyBase.IsDead())
             {
                 EventController.Instance.SetEnemyForCharacter.RunVoidChannel();
-                characterBase.SetEnemy(null);
-                characterBase.HasTargetEnemy = false;
             }
         }
 

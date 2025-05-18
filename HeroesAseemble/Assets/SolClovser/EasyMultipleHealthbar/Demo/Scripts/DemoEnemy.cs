@@ -18,18 +18,6 @@ public class DemoEnemy : MonoBehaviour
         characterController = GetComponent<HeroesAssemble.CharacterController>();
     }
 
-    public void Start()
-    {
-        if (transform.tag == "Pokemon")
-        {
-            maxHp = characterController.health;
-
-            currentHp = characterController.health;
-        }
-
-        RequestAHealthbar();
-    }
-
     private void OnEnable()
     {
         if (transform.tag == "Goblin")

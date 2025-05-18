@@ -40,8 +40,6 @@ namespace HeroesAssemble
             if(enemyBase.IsDead())
             {
                 EventController.Instance.SetEnemyForCharacter.RunVoidChannel();
-                characterBase.SetEnemy(null);
-                characterBase.HasTargetEnemy = false;
             }
         }
 

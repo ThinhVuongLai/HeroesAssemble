@@ -32,6 +32,23 @@ namespace HeroesAssemble
             navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
+        /*private void OnEnable()
+        {
+            if (navMeshAgent)
+            {
+                navMeshAgent.enabled = true;
+            }
+        }*/
+
+        private void OnDisable()
+        {
+            if (navMeshAgent)
+            {
+                StopNavMeshAgent();
+                //navMeshAgent.enabled = false;
+            }
+        }
+
         public void SetTargetToMove(GameObject targetObject)
         {
             targetToMove=targetObject;

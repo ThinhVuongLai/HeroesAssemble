@@ -11,7 +11,7 @@ namespace HeroesAssemble
 
         private List<CharacterController> characterControllers=new List<CharacterController>();
 
-        private List<Transform> enemyTransforms=new List<Transform>();
+        [SerializeField] private List<Transform> enemyTransforms=new List<Transform>();
 
         private void OnEnable()
         {
@@ -100,7 +100,13 @@ namespace HeroesAssemble
             for(int i = 0, length = characterControllers.Count; i<length; i++)
             {
                 currentCharacterController = characterControllers[i];
-                if(!currentCharacterController.HasTargetEnemy)
+
+                if(currentCharacterController.IsDead())
+                {
+                    continue;
+                }
+
+                if((!currentCharacterController.HasTargetEnemy)|| (currentCharacterController.HasTargetEnemy && currentCharacterController.CurrentEnemy.IsDead()))
                 {
                     enemyTransform = GetEnemyTransformsInList(currentCharacterController.transform);
 
@@ -108,10 +114,10 @@ namespace HeroesAssemble
                     {
                         currentCharacterController.SetEnemy(enemyTransform.gameObject);
                     }
-                }
-                else
-                {
-                    currentCharacterController.SetEnemy(null);
+                    else
+                    {
+                        currentCharacterController.SetEnemy(null);
+                    }
                 }
             }
         }

@@ -52,7 +52,7 @@ MonoBehaviour:
     walkAnimationName: hr_Knight_Run
     normalAttackAnimationName: hr_Knight_Attack_01
     deadAnimattionName: hr_Knight_Dead
-    beginAttackDistance: 1.5
+    beginAttackDistance: 0.7
   - characterId: 5
     characterPrefab: {fileID: 2045322929215248779, guid: 49b9999d8d8194c58b67b9c60b92b850, type: 3}
     heath: 100
@@ -68,4 +68,4 @@ MonoBehaviour:
     walkAnimationName: en_Goblin_Walk
     normalAttackAnimationName: en_Goblin_Attack
     deadAnimattionName: hr_Knight_Dead
-    beginAttackDistance: 1
+    beginAttackDistance: 0.7

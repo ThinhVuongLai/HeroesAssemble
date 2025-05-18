@@ -8,7 +8,7 @@ namespace HeroesAssemble
     {
         [SerializeField] private int characterId;
 
-        private CharacterController characterController;
+        [SerializeField] private CharacterController characterController;
 
         public CharacterController CharacterController
         {
@@ -75,13 +75,27 @@ namespace HeroesAssemble
                 RemoveTarget();
                 CharacterController = null;
                 ChangeStatus(CharacterStatus.Idle);
+
+                HasTargetEnemy = false;
             }
             else
             {
                 SetTargetToEnemy(enemyObject);
                 CharacterController = enemyObject.GetComponent<CharacterController>();
                 ChangeStatus(CharacterStatus.NormalAttack);
+
+                HasTargetEnemy = true;
             }
+        }
+
+        protected override void DeadAction()
+        {
+            base.DeadAction();
+
+            RemoveTarget();
+            CharacterController = null;
+
+            EventController.Instance.RemoveEnemyTransform.RunTransformChannel(transform);
         }
     }
 }
