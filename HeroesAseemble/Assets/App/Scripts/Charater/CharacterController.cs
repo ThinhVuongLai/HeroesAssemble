@@ -97,9 +97,11 @@ namespace HeroesAssemble
             EventController.Instance.OnPlayerIdle?.RunVoidChannel();
         }
 
-        public void SetEnemy(GameObject enemyObject)
+        public override void SetEnemy(GameObject enemyObject)
         {
-            if(enemyObject==null)
+            base.SetEnemy(enemyObject);
+
+            if (enemyObject == null)
             {
                 SetTargetToMovePoint();
 

@@ -20,6 +20,8 @@ namespace HeroesAssemble
         [SerializeField] private IAttack attackInterface;
         [SerializeField] private Collider characterCollider;
 
+        [SerializeField] private AnimationEventController animationEventController;
+
         private bool hasTargetEnemy;
         private int currentHeath;
 
@@ -79,6 +81,17 @@ namespace HeroesAssemble
             attackInterface = GetComponent<IAttack>();
 
             characterCollider = GetComponent<Collider>();
+
+            if(animationEventController)
+            {
+                animationEventController = GetComponent<AnimationEventController>();
+            }
+
+            if(animationEventController)
+            {
+                animationEventController.AddAction(0, RunInitAttack);
+                animationEventController.AddAction(1, FinishAttack);
+            }
         }
 
         public virtual void Init(int characterId)
@@ -219,6 +232,11 @@ namespace HeroesAssemble
         }
 
         public virtual void EnemyDeadAction()
+        {
+
+        }
+
+        public virtual void SetEnemy(GameObject enemyObject)
         {
 
         }

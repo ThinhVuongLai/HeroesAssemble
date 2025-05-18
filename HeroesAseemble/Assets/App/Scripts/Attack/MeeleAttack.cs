@@ -32,7 +32,17 @@ namespace HeroesAssemble
 
         public void FinishAttack()
         {
-            
+            if(enemyBase==null)
+            {
+                return;
+            }
+
+            if(enemyBase.IsDead())
+            {
+                EventController.Instance.SetEnemyForCharacter.RunVoidChannel();
+                characterBase.SetEnemy(null);
+                characterBase.HasTargetEnemy = false;
+            }
         }
 
         public void SetEnemyController(CharacterBase characterBase)

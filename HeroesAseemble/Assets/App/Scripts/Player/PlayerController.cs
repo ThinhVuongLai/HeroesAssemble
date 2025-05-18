@@ -109,6 +109,10 @@ namespace HeroesAssemble
                         currentCharacterController.SetEnemy(enemyTransform.gameObject);
                     }
                 }
+                else
+                {
+                    currentCharacterController.SetEnemy(null);
+                }
             }
         }
 

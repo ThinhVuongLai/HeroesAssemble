@@ -66,8 +66,10 @@ namespace HeroesAssemble
             }
         }
 
-        public void SetEnemy(GameObject enemyObject)
+        public override void SetEnemy(GameObject enemyObject)
         {
+            base.SetEnemy(enemyObject);
+
             if (enemyObject == null)
             {
                 RemoveTarget();
