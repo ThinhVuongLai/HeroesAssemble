@@ -20,21 +20,23 @@ public class NavMeshPoissonSpawner : MonoBehaviour
 
     private List<Vector3> spawnedPositions = new List<Vector3>();
 
-    private void Start()
-    {
-        SpawnObjectsOnNavMeshWithPoisson();
-    }
-
-    private void SpawnObjectsOnNavMeshWithPoisson()
+    public int SpawnObjectsOnNavMeshWithPoisson()
     {
         Vector3 centerPos = spawnAreaCenter != null ? spawnAreaCenter.position : transform.position;
+        int returnSpawnCount = SpawnObjectsOnNavMeshWithPoisson(spawnCount ,areaSize, centerPos);
+        return returnSpawnCount;
+    }
 
+    public int SpawnObjectsOnNavMeshWithPoisson(int spawnNumber, Vector2 areaSize, Vector3 centerPos)
+    {
         // Tính toán khoảng cách tối thiểu giữa các vị trí dựa trên bán kính và tỉ lệ giao nhau
         float minDistanceFactor = 2f * (1f - maxOverlapPercentage);
         float actualMinDist = Mathf.Max(minDistanceBetweenObjects, objectRadius * minDistanceFactor);
 
         // Tạo danh sách các điểm theo thuật toán Poisson Disc Sampling
         List<Vector2> points = PoissonDiscSampling(actualMinDist, areaSize, samplingAttempts);
+
+        points.Shuffle();
 
         int spawnedCount = 0;
 
@@ -65,10 +67,16 @@ public class NavMeshPoissonSpawner : MonoBehaviour
 #if UNITY_EDITOR
                 DrawRadiusVisualizer(hit.position, objectRadius);
 #endif
+                if(spawnedCount >= spawnNumber)
+                {
+                    break;
+                }
             }
         }
 
         Debug.Log($"Đã spawn {spawnedCount} đối tượng trên NavMesh.");
+
+        return spawnedCount;
     }
 
     // Thuật toán Poisson Disc Sampling

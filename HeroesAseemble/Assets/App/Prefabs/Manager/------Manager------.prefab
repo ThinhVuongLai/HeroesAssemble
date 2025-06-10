@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6110753259376257766}
   - component: {fileID: 6589056477014364723}
+  - component: {fileID: 4277392565331862567}
   m_Layer: 0
   m_Name: SpawnController
   m_TagString: Untagged
@@ -52,6 +53,22 @@ MonoBehaviour:
   spawnAreaCenter: {fileID: 0}
   minDistanceBetweenObjects: 2.5
   samplingAttempts: 30
+--- !u!114 &4277392565331862567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5441344146610396120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a20dc264f5e8a467baf72829973c9771, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navMeshPoissonSpawner: {fileID: 6589056477014364723}
+  spawnTransforms: []
+  enemyPrefab: {fileID: 5658774782158414467, guid: d2e480cef7f4e412b96ea82ab4ca4f5c, type: 3}
+  enemyNumber: 50
 --- !u!1 &6959156883202136037
 GameObject:
   m_ObjectHideFlags: 0

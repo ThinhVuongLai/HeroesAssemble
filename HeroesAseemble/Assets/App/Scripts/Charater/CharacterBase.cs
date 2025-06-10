@@ -142,6 +142,7 @@ namespace HeroesAssemble
                     break;
                 case CharacterStatus.Run:
                     {
+                        Debug.LogError($"Change To Run, {name}");
                         currentStatus = runStatus;
                     }
                     break;

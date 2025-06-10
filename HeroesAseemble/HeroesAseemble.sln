@@ -1,14 +1,36 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{B45BF977-0304-FA6B-A175-746D2B48B067}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProPixelizer", "ProPixelizer.csproj", "{3F7CC3C8-AA4E-B08C-A938-8AC7CD08D237}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-firstpass", "Assembly-CSharp-firstpass.csproj", "{1E6F22EC-0536-1F18-517C-474E35A81C0C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{002D8A07-C203-426C-47C6-E6D49D2AC6F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-
+		{B45BF977-0304-FA6B-A175-746D2B48B067}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B45BF977-0304-FA6B-A175-746D2B48B067}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B45BF977-0304-FA6B-A175-746D2B48B067}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B45BF977-0304-FA6B-A175-746D2B48B067}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F7CC3C8-AA4E-B08C-A938-8AC7CD08D237}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F7CC3C8-AA4E-B08C-A938-8AC7CD08D237}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F7CC3C8-AA4E-B08C-A938-8AC7CD08D237}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F7CC3C8-AA4E-B08C-A938-8AC7CD08D237}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E6F22EC-0536-1F18-517C-474E35A81C0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E6F22EC-0536-1F18-517C-474E35A81C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E6F22EC-0536-1F18-517C-474E35A81C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E6F22EC-0536-1F18-517C-474E35A81C0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{002D8A07-C203-426C-47C6-E6D49D2AC6F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{002D8A07-C203-426C-47C6-E6D49D2AC6F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{002D8A07-C203-426C-47C6-E6D49D2AC6F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{002D8A07-C203-426C-47C6-E6D49D2AC6F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
