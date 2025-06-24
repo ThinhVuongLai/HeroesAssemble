@@ -47,3 +47,5 @@ MonoBehaviour:
   characterLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  uiCamera: {fileID: 0}
+  healthBarPrefab: {fileID: 4274709762191797742, guid: e115023290fdf41c18e945f11b137c79, type: 3}

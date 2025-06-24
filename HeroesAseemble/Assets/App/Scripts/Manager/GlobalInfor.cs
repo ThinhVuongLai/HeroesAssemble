@@ -10,6 +10,10 @@ namespace HeroesAssemble
         public static string EnemyTag = "Enemy";
 
         [SerializeField] private LayerMask characterLayerMask;
+        [SerializeField] private Camera uiCamera;
+
+        [Header("Prefabs")]
+        [SerializeField] private GameObject healthBarPrefab;
 
         public LayerMask CharacterLayerMask
         {
@@ -18,5 +22,8 @@ namespace HeroesAssemble
                 return characterLayerMask;
             }
         }
+
+        public GameObject HeathBarPrefab => healthBarPrefab;
+        public Camera UICamera => uiCamera;
     }
 }

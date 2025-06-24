@@ -11,6 +11,7 @@ namespace HeroesAssemble
         [SerializeField] protected CharacterStatus currentCharacterStatus = CharacterStatus.None;
         protected FriendlyAgent friendlyAgent;
         protected Animator characterAnimator;
+        protected IHealthBar healthBar;
 
         protected BaseCharacterStatus currentStatus;
         protected BaseCharacterStatus idleStatus;
@@ -99,6 +100,14 @@ namespace HeroesAssemble
             }
         }
 
+        private void CreateHealthBar()
+        {
+            HealthBarFactor healthBarFactor = new HealthBarFactor();
+
+            RectTransform parent = CanvasManager.Instance.GetCanvasRectTransform(CanvasType.HealthBar);
+            healthBar = healthBarFactor.CreateBar(HealthBarType.Health, parent);
+        }
+
         private void Update()
         {
             if (currentStatus != null)
@@ -142,7 +151,6 @@ namespace HeroesAssemble
                     break;
                 case CharacterStatus.Run:
                     {
-                        Debug.LogError($"Change To Run, {name}");
                         currentStatus = runStatus;
                     }
                     break;
@@ -204,7 +212,9 @@ namespace HeroesAssemble
                 return;
             }
 
-            currentHeath-=damageAmount;
+            currentHeath -= damageAmount;
+
+            healthBar.MinusHealth(damageAmount);
 
             if(currentHeath <= 0)
             {
@@ -219,6 +229,7 @@ namespace HeroesAssemble
             if(addAmount>0)
             {
                 currentHeath+=addAmount;
+                healthBar.AddHealth(addAmount);
             }
         }
         #endregion
@@ -287,6 +298,16 @@ namespace HeroesAssemble
             characterInfor = EventController.Instance.GetCharacterInforChannel.RunChannel(characterId);
 
             currentHeath = characterInfor.heath;
+
+            CreateHealthBar();
+
+            healthBar.Init(currentHeath);
+
+            HealthBar currentHealthBar = healthBar as HealthBar;
+            if(currentHealthBar)
+            {
+                currentHealthBar.SetCharacterTransform(transform);
+            }
         }
 
         public void PlayAnimation(string animationName, bool isForcePlay = false)
