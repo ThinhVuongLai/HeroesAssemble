@@ -56,9 +56,9 @@ namespace HeroesAssemble
 
         public bool IsEnoughDistanceToTarget(float offsetDistance = 0f)
         {
-            if(target==null)
+            if(target == null)
             {
-                return false;
+                return true;
             }
 
             float distance = GetDistanceToTarget();
