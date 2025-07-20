@@ -4,6 +4,10 @@ using UnityEngine;
 
 namespace HeroesAssemble
 {
+    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(CharacterTrigger))]
+    [RequireComponent(typeof(FriendlyAgent))]
+    [RequireComponent(typeof(AnimationEventController))]
     public class CharacterController : CharacterBase
     {
         protected CharacterTrigger characterTrigger;

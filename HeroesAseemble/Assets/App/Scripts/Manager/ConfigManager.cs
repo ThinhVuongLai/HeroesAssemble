@@ -9,9 +9,15 @@ namespace HeroesAssemble
         [Header("Character Config")]
         [SerializeField] private CharacterConfig characterConfig;
 
-        private void Awake()
+        [Header("Enemy Config")]
+        [SerializeField] private CharacterConfig enemyConfig;
+
+        public override void Awake()
         {
+            base.Awake();
+
             EventController.Instance.GetCharacterInforChannel.AddListener(GetCharacterInfor);
+            EventController.Instance.GetEnemyInforChannel.AddListener(GetEnemyInfor);
         }
 
         private CharacterInfor GetCharacterInfor(int characterId)
@@ -22,6 +28,16 @@ namespace HeroesAssemble
             }
 
             return characterConfig.GetCharacterInfor(characterId);
+        }
+
+        private CharacterInfor GetEnemyInfor(int characterId)
+        {
+            if (enemyConfig == null)
+            {
+                return null;
+            }
+
+            return enemyConfig.GetCharacterInfor(characterId);
         }
     }
 }

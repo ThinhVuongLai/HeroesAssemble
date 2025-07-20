@@ -449,6 +449,10 @@ PrefabInstance:
       propertyPath: variableJoystick
       value: 
       objectReference: {fileID: 9048034933437784882}
+    - target: {fileID: 9002645539561238198, guid: b7ec89db032cd45cb922f3e65d9b8a1d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

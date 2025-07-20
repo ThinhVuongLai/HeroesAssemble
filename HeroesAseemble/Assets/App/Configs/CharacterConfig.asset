@@ -14,58 +14,82 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterInfors:
   - characterId: 0
-    characterPrefab: {fileID: 3319832262097768165, guid: 97e4b6a85da7e495290cbfff4bb006aa, type: 3}
-    heath: 0
-    idleAnimationName: 
-    walkAnimationName: 
-    normalAttackAnimationName: 
-    deadAnimattionName: 
-    beginAttackDistance: 0.5
-  - characterId: 1
-    characterPrefab: {fileID: 8689480311849083149, guid: 3cbeeb5b11ab94e37a7c93f7644ee21c, type: 3}
-    heath: 0
-    idleAnimationName: 
-    walkAnimationName: 
-    normalAttackAnimationName: 
-    deadAnimattionName: 
-    beginAttackDistance: 0.5
-  - characterId: 2
-    characterPrefab: {fileID: 2519676120326203508, guid: 8aad86607e3ad49a99d47eda0f4a1df4, type: 3}
-    heath: 0
-    idleAnimationName: 
-    walkAnimationName: 
-    normalAttackAnimationName: 
-    deadAnimattionName: 
-    beginAttackDistance: 0.5
-  - characterId: 3
-    characterPrefab: {fileID: 5520583845748892553, guid: e20ed991fd6b84df99a2bc42d9f3ecf4, type: 3}
-    heath: 0
-    idleAnimationName: 
-    walkAnimationName: 
-    normalAttackAnimationName: 
-    deadAnimattionName: 
-    beginAttackDistance: 0.5
-  - characterId: 4
     characterPrefab: {fileID: 2373476749425544925, guid: 908e0d26f06bc450ea7063b3c31931a6, type: 3}
     heath: 100
-    idleAnimationName: hr_Knight_Idle
-    walkAnimationName: hr_Knight_Run
-    normalAttackAnimationName: hr_Knight_Attack_01
-    deadAnimattionName: hr_Knight_Dead
-    beginAttackDistance: 0.7
-  - characterId: 5
+    idleAnimationName: Idle
+    walkAnimationName: Run
+    normalAttackAnimationName: Attack
+    deadAnimattionName: Dead
+    beginAttackDistance: 1.3
+  - characterId: 1
     characterPrefab: {fileID: 2045322929215248779, guid: 49b9999d8d8194c58b67b9c60b92b850, type: 3}
     heath: 100
-    idleAnimationName: hr_Mage_Idle
-    walkAnimationName: hr_Mage_Run
-    normalAttackAnimationName: hr_Mage_Attack
-    deadAnimattionName: hr_Knight_Dead
-    beginAttackDistance: 3
+    idleAnimationName: Idle
+    walkAnimationName: Run
+    normalAttackAnimationName: Attack
+    deadAnimattionName: Dead
+    beginAttackDistance: 5.4
+  - characterId: 2
+    characterPrefab: {fileID: 4896674491555332878, guid: e63dd6c1599c74c788600ee61e4644de, type: 3}
+    heath: 100
+    idleAnimationName: Idle
+    walkAnimationName: Run
+    normalAttackAnimationName: Attack
+    deadAnimattionName: Dead
+    beginAttackDistance: 5.4
+  - characterId: 3
+    characterPrefab: {fileID: 4111395253501781922, guid: 44d9b001267a043b99c1489dc38d193d, type: 3}
+    heath: 100
+    idleAnimationName: Idle
+    walkAnimationName: Run
+    normalAttackAnimationName: Attack
+    deadAnimattionName: Dead
+    beginAttackDistance: 1.3
+  - characterId: 4
+    characterPrefab: {fileID: 1994010204303039610, guid: 3cebd48390b204743a68c1c0e441b0b3, type: 3}
+    heath: 100
+    idleAnimationName: Idle
+    walkAnimationName: Run
+    normalAttackAnimationName: Attack
+    deadAnimattionName: Dead
+    beginAttackDistance: 1.3
+  - characterId: 5
+    characterPrefab: {fileID: 9078348578809288473, guid: b9707f73233714aef9e9ecd33cfeb0d8, type: 3}
+    heath: 100
+    idleAnimationName: Idle
+    walkAnimationName: Run
+    normalAttackAnimationName: Attack
+    deadAnimattionName: Dead
+    beginAttackDistance: 1.3
   - characterId: 6
-    characterPrefab: {fileID: 5658774782158414467, guid: d2e480cef7f4e412b96ea82ab4ca4f5c, type: 3}
-    heath: 6
-    idleAnimationName: en_Goblin_Idle
-    walkAnimationName: en_Goblin_Walk
-    normalAttackAnimationName: en_Goblin_Attack
-    deadAnimattionName: hr_Knight_Dead
-    beginAttackDistance: 0.7
+    characterPrefab: {fileID: 4302583894697160240, guid: 94fa9a866c6ec42ee964c55b325fc6cd, type: 3}
+    heath: 100
+    idleAnimationName: Idle
+    walkAnimationName: Run
+    normalAttackAnimationName: Attack
+    deadAnimattionName: Dead
+    beginAttackDistance: 1.3
+  - characterId: 7
+    characterPrefab: {fileID: 2403461848780542859, guid: 3725c00ba4559465db693a2815390063, type: 3}
+    heath: 100
+    idleAnimationName: Idle
+    walkAnimationName: Run
+    normalAttackAnimationName: Attack
+    deadAnimattionName: Dead
+    beginAttackDistance: 5.4
+  - characterId: 8
+    characterPrefab: {fileID: 4467999049988995716, guid: 36960c3de50894a9f887508bd7eab70a, type: 3}
+    heath: 100
+    idleAnimationName: Idle
+    walkAnimationName: Run
+    normalAttackAnimationName: Attack
+    deadAnimattionName: Dead
+    beginAttackDistance: 1.3
+  - characterId: 9
+    characterPrefab: {fileID: 8472180715179188512, guid: 33083a4c29fc24324b1ef1d3e730f288, type: 3}
+    heath: 100
+    idleAnimationName: Idle
+    walkAnimationName: Run
+    normalAttackAnimationName: Attack
+    deadAnimattionName: Dead
+    beginAttackDistance: 1.3

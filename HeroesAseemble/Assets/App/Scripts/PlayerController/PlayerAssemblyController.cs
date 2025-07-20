@@ -7,6 +7,8 @@ namespace HeroesAssemble
     public class PlayerAssemblyController : MonoBehaviour
     {
         private const int characterMax = 6;
+
+        [SerializeField] private Transform parentTransform;
         [SerializeField] private List<int> characterIds = new List<int>();
 
         private void Awake()
@@ -99,7 +101,8 @@ namespace HeroesAssemble
                         spawnTransform = transform;
                     }
 
-                    currentCharacterObject = Instantiate(currentPrefab, spawnTransform.position, Quaternion.identity);
+                    currentCharacterObject = Instantiate(currentPrefab, spawnTransform.position, Quaternion.identity, parent: parentTransform);
+                    Debug.Log($"Instantiate character {currentCharacterId} at position {spawnTransform.position}, character position: {currentCharacterObject.transform.position}");
                     currentCharacterController = currentCharacterObject.GetComponent<CharacterController>();
                     currentCharacterController.Init(currentCharacterId);
                     EventController.Instance.AddCharacterControllerChannel.RunCharacterControllerChannel(currentCharacterController);

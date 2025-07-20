@@ -53,11 +53,11 @@ namespace HeroesAssemble
 
             if(Input.GetKeyDown(KeyCode.M))
             {
+                EventController.Instance.AddCharacterChannel.RunIntegerChannel(2);
+                EventController.Instance.AddCharacterChannel.RunIntegerChannel(3);
                 EventController.Instance.AddCharacterChannel.RunIntegerChannel(4);
                 EventController.Instance.AddCharacterChannel.RunIntegerChannel(5);
-                EventController.Instance.AddCharacterChannel.RunIntegerChannel(4);
-                EventController.Instance.AddCharacterChannel.RunIntegerChannel(5);
-                EventController.Instance.AddCharacterChannel.RunIntegerChannel(4);
+                EventController.Instance.AddCharacterChannel.RunIntegerChannel(6);
 
                 EventController.Instance.UpdateAssemplyChannel.RunVoidChannel();
             }

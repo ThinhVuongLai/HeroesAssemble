@@ -17,6 +17,7 @@ namespace HeroesAssemble
 
         [Header("GetCharacterInforChannel")]
         [SerializeField] private GetCharacterInforChannel getCharacterInforChannel;
+        [SerializeField] private GetCharacterInforChannel getEnemyInforChannel;
 
         [Header("IntegerChannel")]
         [SerializeField] private IntegerChannel addCharacterChannel;
@@ -44,6 +45,8 @@ namespace HeroesAssemble
 
         // GetCharacterInforChannel
         public GetCharacterInforChannel GetCharacterInforChannel => getCharacterInforChannel;
+
+        public GetCharacterInforChannel GetEnemyInforChannel => getEnemyInforChannel;
 
         // IntegerChannel
         public IntegerChannel AddCharacterChannel => addCharacterChannel;

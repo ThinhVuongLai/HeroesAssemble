@@ -50,7 +50,9 @@ MonoBehaviour:
   setEnemyForCharacter: {fileID: 11400000, guid: d5f245298b4d344bc8c1bdb9795224f8, type: 2}
   onPlayerIdle: {fileID: 11400000, guid: 446ba694fccb44cababe50b38333b4ff, type: 2}
   onPlayerMove: {fileID: 11400000, guid: ab7cd06a65d9a4009bbf69159b9aa095, type: 2}
+  pauseGameChannel: {fileID: 0}
   getCharacterInforChannel: {fileID: 11400000, guid: a49208ef7e4e446c1828e92bc50c213d, type: 2}
+  getEnemyInforChannel: {fileID: 11400000, guid: f1c5e6ebaa73a4872a5bbe1159f61365, type: 2}
   addCharacterChannel: {fileID: 11400000, guid: 81c57ac1a07b04edc96747e69ef75764, type: 2}
   removeCharacterChannel: {fileID: 11400000, guid: 43d77a15c5d9e4752a22090f37bb6fbf, type: 2}
   addCharacterControllerChannel: {fileID: 11400000, guid: 69e87ae6fcf014fbf8c67ae46115db2a, type: 2}

@@ -88,7 +88,7 @@ namespace HeroesAssemble
 
             characterCollider = GetComponent<Collider>();
 
-            if (animationEventController)
+            if (animationEventController == null)
             {
                 animationEventController = GetComponent<AnimationEventController>();
             }
@@ -106,6 +106,8 @@ namespace HeroesAssemble
 
             RectTransform parent = CanvasManager.Instance.GetCanvasRectTransform(CanvasType.HealthBar);
             healthBar = healthBarFactor.CreateBar(HealthBarType.Health, parent);
+
+            healthBar.SetShowBar(false);
         }
 
         private void Update()
@@ -295,7 +297,14 @@ namespace HeroesAssemble
         #region Other Functions
         public virtual void Init(int characterId)
         {
-            characterInfor = EventController.Instance.GetCharacterInforChannel.RunChannel(characterId);
+            if (characterId >= 0)
+            {
+                characterInfor = EventController.Instance.GetCharacterInforChannel.RunChannel(characterId);
+            }
+            else
+            {
+                characterInfor = EventController.Instance.GetEnemyInforChannel.RunChannel(characterId);
+            }
 
             currentHeath = characterInfor.heath;
 

@@ -27,7 +27,7 @@ public class NavMeshPoissonSpawner : MonoBehaviour
         return returnSpawnCount;
     }
 
-    public int SpawnObjectsOnNavMeshWithPoisson(int spawnNumber, Vector2 areaSize, Vector3 centerPos)
+    public int SpawnObjectsOnNavMeshWithPoisson(int spawnNumber, Vector2 areaSize, Vector3 centerPos, Transform parent = null)
     {
         // Tính toán khoảng cách tối thiểu giữa các vị trí dựa trên bán kính và tỉ lệ giao nhau
         float minDistanceFactor = 2f * (1f - maxOverlapPercentage);
@@ -58,7 +58,7 @@ public class NavMeshPoissonSpawner : MonoBehaviour
             if (NavMesh.SamplePosition(samplePosition, out hit, 3f, NavMesh.AllAreas))
             {
                 // Spawn đối tượng tại vị trí hợp lệ
-                GameObject obj = Instantiate(objectPrefab, hit.position, Quaternion.identity);
+                GameObject obj = Instantiate(objectPrefab, hit.position, Quaternion.identity, parent);
                 // Lưu lại vị trí đã spawn
                 spawnedPositions.Add(hit.position);
                 spawnedCount++;

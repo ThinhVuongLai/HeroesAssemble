@@ -99,9 +99,11 @@ namespace HeroesAssemble
 
         public float GetDistanceToTarget()
         {
-            if(target)
+            if (target)
             {
-                return Vector3.Distance(transform.position, target.transform.position);
+                //return Vector3.Distance(transform.position, target.transform.position);
+                return Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(target.transform.position.x, target.transform.position.z));
+
             }
             else
             {

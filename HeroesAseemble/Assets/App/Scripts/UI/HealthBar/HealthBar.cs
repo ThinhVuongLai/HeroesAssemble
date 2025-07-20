@@ -23,10 +23,14 @@ namespace HeroesAssemble
         public void AddHealth(int addAmount)
         {
             currentHealth += addAmount;
-            if(currentHealth > maxHealth)
+            if (currentHealth > maxHealth)
             {
                 maxHealth = currentHealth;
+                
+                SetShowBar(false);
             }
+
+            SetShowBar(true);
 
             UpdateHealth(currentHealth);
         }
@@ -54,6 +58,8 @@ namespace HeroesAssemble
                 currentHealth = 0;
             }
 
+            SetShowBar(true);
+
             UpdateHealth(currentHealth);
         }
 
@@ -75,15 +81,24 @@ namespace HeroesAssemble
         public void ResetHealth()
         {
             currentHealth = maxHealth;
-            if(healthImage)
+            if (healthImage)
             {
                 healthImage.fillAmount = 1;
             }
+
+            SetShowBar(false);
+        }
+
+        public void SetShowBar(bool isShow)
+        {
+            gameObject.SetActive(isShow);
+            
+            hasShow = isShow;
         }
 
         private void Update()
         {
-            if(!hasShow)
+            if (!hasShow)
             {
                 return;
             }

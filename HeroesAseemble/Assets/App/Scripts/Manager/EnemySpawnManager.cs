@@ -5,16 +5,17 @@ using UnityEngine;
 public class EnemySpawnManager : MonoBehaviour
 {
     [SerializeField] private NavMeshPoissonSpawner navMeshPoissonSpawner;
+    [SerializeField] private Transform parentTransform;
     [SerializeField] private List<SpawnItem> spawnItems = new List<SpawnItem>();
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private int enemyNumber = 50;
 
     private void Start()
     {
-        SpawnEnemy();
+        SpawnEnemy(parentTransform);
     }
 
-    public void SpawnEnemy()
+    public void SpawnEnemy(Transform parent = null)
     {
         int spawnNumber = 0;
         List<int> spawnNumbers = GetListSpawnNumber();
@@ -30,19 +31,19 @@ public class EnemySpawnManager : MonoBehaviour
                 spawnNumber += leftSpawn;
             }
 
-            currentSpawnNumber = SpawnEnemyAtLocal(spawnNumber,item.transform,item.AreaSpawn);
+            currentSpawnNumber = SpawnEnemyAtLocal(spawnNumber,item.transform,item.AreaSpawn, parent: parent);
 
             leftSpawn = spawnNumber - currentSpawnNumber;
             index++;
         }
     }
 
-    private int SpawnEnemyAtLocal(int spawnNumber,Transform transform, Vector2 areaSpawn)
+    private int SpawnEnemyAtLocal(int spawnNumber,Transform transform, Vector2 areaSpawn, Transform parent = null)
     {
         Vector3 centerSpawn = transform.position;
         centerSpawn.y = 0;
 
-        var currentEnemy = navMeshPoissonSpawner.SpawnObjectsOnNavMeshWithPoisson(spawnNumber, areaSpawn, centerSpawn);
+        var currentEnemy = navMeshPoissonSpawner.SpawnObjectsOnNavMeshWithPoisson(spawnNumber, areaSpawn, centerSpawn, parent);
 
         return currentEnemy;
     }

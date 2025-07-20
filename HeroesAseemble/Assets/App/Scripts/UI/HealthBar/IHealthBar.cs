@@ -15,5 +15,7 @@ namespace HeroesAssemble
         public void UpdateHealth(int healthAmount);
 
         public void ResetHealth();
+
+        public void SetShowBar(bool isShow);
     }
 }
