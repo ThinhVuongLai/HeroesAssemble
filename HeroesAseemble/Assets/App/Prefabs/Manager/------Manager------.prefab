@@ -66,7 +66,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navMeshPoissonSpawner: {fileID: 6589056477014364723}
-  spawnTransforms: []
+  parentTransform: {fileID: 0}
+  spawnItems: []
   enemyPrefab: {fileID: 5658774782158414467, guid: d2e480cef7f4e412b96ea82ab4ca4f5c, type: 3}
   enemyNumber: 50
 --- !u!1 &6959156883202136037
@@ -216,6 +217,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2960489907578783580, guid: 4dafadeee2f0f46899f807fa4c3794ec, type: 3}
+      propertyPath: enemyConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: f9b34bb431d6e47c4b0e1e0d55a23033, type: 2}
     - target: {fileID: 7795179221233219917, guid: 4dafadeee2f0f46899f807fa4c3794ec, type: 3}
       propertyPath: m_Name
       value: ConfigManager
