@@ -15,15 +15,31 @@ namespace HeroesAssemble
 
         private void OnEnable()
         {
-            EventController.Instance.ClearCharacterControllers.AddListener(ClearCharacterControllers);
-            EventController.Instance.AddCharacterControllerChannel.AddListener(AddCharacterController);
-            EventController.Instance.RemoveCharacterControllerChannel.AddListener(RemoveCharacterController);
+            EventController.Instance
+                .ClearCharacterControllers
+                .AddListener(ClearCharacterControllers);
 
-            EventController.Instance.ClearEnemyTransforms.AddListener(ClearEnemyTransforms);
+            EventController.Instance
+                .AddCharacterControllerChannel
+                .AddListener(AddCharacterController);
+
+            EventController.Instance
+                .RemoveCharacterControllerChannel
+                .AddListener(RemoveCharacterController);
+
+            EventController.Instance
+                .ClearEnemyTransforms
+                .AddListener(ClearEnemyTransforms);
+
             EventController.Instance.AddEnemyTransform.AddListener(AddEnemyTransform);
-            EventController.Instance.RemoveEnemyTransform.AddListener(RemoveEnemyTransform);
 
-            EventController.Instance.SetEnemyForCharacter.AddListener(SetEnemyForCharacter);
+            EventController.Instance
+                .RemoveEnemyTransform
+                .AddListener(RemoveEnemyTransform);
+
+            EventController.Instance
+                .SetEnemyForCharacter
+                .AddListener(SetEnemyForCharacter);
 
             EventController.Instance.OnPlayerIdle.AddListener(OnPlayerIdle);
             EventController.Instance.OnPlayerMove.AddListener(OnPlayerMove);
@@ -38,20 +54,39 @@ namespace HeroesAssemble
                 return;
             }
 
-            EventController.Instance.ClearCharacterControllers.RemoveListener(ClearCharacterControllers);
-            EventController.Instance.AddCharacterControllerChannel.RemoveListener(AddCharacterController);
-            EventController.Instance.RemoveCharacterControllerChannel.RemoveListener(RemoveCharacterController);
+            EventController.Instance
+                .ClearCharacterControllers
+                .RemoveListener(ClearCharacterControllers);
 
-            EventController.Instance.ClearEnemyTransforms.RemoveListener(ClearEnemyTransforms);
-            EventController.Instance.AddEnemyTransform.RemoveListener(AddEnemyTransform);
-            EventController.Instance.RemoveEnemyTransform.RemoveListener(RemoveEnemyTransform);
+            EventController.Instance
+                .AddCharacterControllerChannel
+                .RemoveListener(AddCharacterController);
 
-            EventController.Instance.SetEnemyForCharacter.RemoveListener(SetEnemyForCharacter);
+            EventController.Instance
+                .RemoveCharacterControllerChannel
+                .RemoveListener(RemoveCharacterController);
+
+            EventController.Instance
+                .ClearEnemyTransforms
+                .RemoveListener(ClearEnemyTransforms);
+
+            EventController.Instance
+                .AddEnemyTransform
+                .RemoveListener(AddEnemyTransform);
+            EventController.Instance
+                .RemoveEnemyTransform
+                .RemoveListener(RemoveEnemyTransform);
+
+            EventController.Instance
+                .SetEnemyForCharacter
+                .RemoveListener(SetEnemyForCharacter);
 
             EventController.Instance.OnPlayerIdle.RemoveListener(OnPlayerIdle);
             EventController.Instance.OnPlayerMove.RemoveListener(OnPlayerMove);
 
-            EventController.Instance.GetPlayerStatusChannel.RemoveListener(GetPlayerStatus);
+            EventController.Instance
+                .GetPlayerStatusChannel
+                .RemoveListener(GetPlayerStatus);
         }
 
         private void AddCharacterController(CharacterController characterController)

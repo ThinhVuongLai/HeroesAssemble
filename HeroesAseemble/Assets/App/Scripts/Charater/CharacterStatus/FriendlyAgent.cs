@@ -51,7 +51,7 @@ namespace HeroesAssemble
 
         public void SetTargetToMove(GameObject targetObject)
         {
-            targetToMove=targetObject;
+            targetToMove = targetObject;
         }
 
         public bool IsEnoughDistanceToTarget(float offsetDistance = 0f)
@@ -78,18 +78,6 @@ namespace HeroesAssemble
             float distanceToTarget = GetDistanceToTarget();
 
             return distanceToTarget < characterBase.CurrentCharacterInfor.beginAttackDistance;
-        }
-
-        public void MoveWhenTooNearTarget()
-        {
-            Vector3 characterPosition = transform.position;
-            Vector3 targetPosition = target.transform.position;
-
-            Vector3 direction = GetDirection(characterPosition, targetPosition);
-            
-            Vector3 targetMovePosition=target.transform.position + (direction*(characterBase.CurrentCharacterInfor.beginAttackDistance - 0.1f));
-
-            navMeshAgent.SetDestination(targetMovePosition);
         }
 
         public Vector3 GetDirection(Vector3 from, Vector3 to)

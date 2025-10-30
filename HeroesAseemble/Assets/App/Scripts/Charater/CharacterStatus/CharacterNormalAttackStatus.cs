@@ -35,12 +35,6 @@ namespace HeroesAssemble
         {
             if(CurrentCharacterController.FriendlyAgent.IsEnoughDistanceToAttack())
             {
-                // if(CurrentCharacterController.FriendlyAgent.IsTooNearTarget())
-                // {
-                //     MoveWhenTooNearTarget();
-                //     return;
-                // }
-
                 if (!hasBeginAttackAnimation)
                 {
                     hasBeginAttackAnimation = true;
@@ -59,16 +53,5 @@ namespace HeroesAssemble
                 CurrentCharacterController.PlayAnimation(CurrentCharacterController.CurrentCharacterInfor.walkAnimationName);
             }
         }
-
-        private void MoveWhenTooNearTarget()
-        {
-            CurrentCharacterController.FriendlyAgent.ContinueNavMeshAgent();
-            CurrentCharacterController.FriendlyAgent.MoveWhenTooNearTarget();
-
-            hasBeginAttackAnimation = false;
-            CurrentCharacterController.PlayAnimation(CurrentCharacterController.CurrentCharacterInfor.walkAnimationName);
-        }
-
-        
     }
 }

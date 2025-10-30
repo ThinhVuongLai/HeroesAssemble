@@ -10,9 +10,13 @@ namespace HeroesAssemble
         {
             if(other.gameObject.CompareTag(GlobalInfor.EnemyTag))
             {
-                EventController.Instance.AddEnemyTransform.RunTransformChannel(other.transform);
+                EventController.Instance
+                    .AddEnemyTransform
+                    .RunTransformChannel(other.transform);
 
-                PlayerStatus currentPlayerStatus = EventController.Instance.GetPlayerStatusChannel.RunGetPlayerStatusChannel();
+                PlayerStatus currentPlayerStatus = EventController.Instance
+                    .GetPlayerStatusChannel
+                    .RunGetPlayerStatusChannel();
 
                 if(currentPlayerStatus.Equals(PlayerStatus.Idle))
                 {
@@ -26,7 +30,9 @@ namespace HeroesAssemble
         {
             if(other.gameObject.CompareTag(GlobalInfor.EnemyTag))
             {
-                EventController.Instance.RemoveEnemyTransform.RunTransformChannel(other.transform);
+                EventController
+                    .Instance.RemoveEnemyTransform
+                    .RunTransformChannel(other.transform);
             }
         }
     }

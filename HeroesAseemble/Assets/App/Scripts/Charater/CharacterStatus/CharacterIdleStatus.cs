@@ -19,10 +19,12 @@ namespace HeroesAssemble
         {
             base.UpdateStatus();
 
-            if (!CurrentCharacterController.FriendlyAgent.IsEnoughDistanceToTarget(0.05f))
-            {
-                CurrentCharacterController.ChangeStatus(CharacterStatus.Run);
-            }
+            //if (!CurrentCharacterController.
+            //    FriendlyAgent.
+            //    IsEnoughDistanceToTarget(0.05f))
+            //{
+            //    CurrentCharacterController.ChangeStatus(CharacterStatus.Run);
+            //}
         }
     }
 }
