@@ -56,7 +56,7 @@ namespace HeroesAssemble
 
         public bool IsEnoughDistanceToTarget(float offsetDistance = 0f)
         {
-            if(target == null)
+            if (target == null)
             {
                 return true;
             }
@@ -106,15 +106,16 @@ namespace HeroesAssemble
 
         public void RunToTarget()
         {
-            if(target)
+            if (target)
             {
                 navMeshAgent.SetDestination(target.transform.position);
-            }   
+            }
         }
 
         public void StopNavMeshAgent()
         {
-            navMeshAgent.isStopped = true;
+            if (navMeshAgent != null)
+                navMeshAgent.isStopped = true;
         }
 
         public void ContinueNavMeshAgent()
@@ -129,14 +130,14 @@ namespace HeroesAssemble
 
         public void LookAtTarget()
         {
-            if(target == null)
+            if (target == null)
             {
                 return;
             }
 
-        Vector3 direction = (target.transform.position - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * navMeshAgent.angularSpeed);
+            Vector3 direction = (target.transform.position - transform.position).normalized;
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * navMeshAgent.angularSpeed);
         }
     }
 }
